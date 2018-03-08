@@ -25,7 +25,7 @@ If using Visual Studio Code, the built in debugger will take care of building an
 
 ### To Run
 
-1. `dotnet run`
+1. `dotnet GoldenTicket.Web[site|Api]/bin/Debug/netcoreapp2.0/GoldenTicket.[site|Api].dll`
 
 ## Architecture
 
