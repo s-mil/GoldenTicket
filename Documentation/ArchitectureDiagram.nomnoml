@@ -1,0 +1,19 @@
+[<frame> Architecture Diagram |
+    [<package> Website |
+        [Razor Pages]
+    ] --> [Web API]
+
+    [Website] --> [ASP.NET Core]
+
+    [<package> Web API |
+
+        [View Models] <- [Views] 
+        [Controllers] +-> [Views]
+        [Controllers] +-> [View Models]
+        [Controllers] +-> [Models]
+    ] --> [<database> SQLite]
+
+    [Web API] --> [ASP.NET Core]
+
+    [ASP.NET Core] --> [Kestrel Web Server]
+]
