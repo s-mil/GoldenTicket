@@ -13,6 +13,8 @@ You can build and run both of the services in the same way from within their res
 
 ## Build And Run
 
+If using Visual Studio Code, the built in debugger will take care of building and running for you.
+
 ### Required Tools
 
 - [.NET Core SDK](https://www.microsoft.com/net/download/thank-you/dotnet-sdk-2.1.4-windows-x64-installer)
