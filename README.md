@@ -2,4 +2,4 @@
 
 Wow, what a great ticketing system!
 
-![alt text](https://github.com/sithpow/the-golden-ticket/master/architecular.png)
+![alt text](https://github.com/sithpow/the-golden-ticket/master/Architecular.png)
