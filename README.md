@@ -1,4 +1,4 @@
-# the-golden-ticket
+# Golden Ticket
 
 ## About
 
