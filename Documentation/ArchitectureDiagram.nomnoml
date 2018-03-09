@@ -5,15 +5,11 @@
 
     [Website] --> [ASP.NET Core]
 
-    [<package> Web API |
+    [Web API] --> [ASP.NET Core]
 
-        [View Models] <- [Views] 
-        [Controllers] +-> [Views]
-        [Controllers] +-> [View Models]
+    [<package> Web API |
         [Controllers] +-> [Models]
     ] --> [<database> SQLite]
-
-    [Web API] --> [ASP.NET Core]
 
     [ASP.NET Core] --> [Kestrel Web Server]
 ]
