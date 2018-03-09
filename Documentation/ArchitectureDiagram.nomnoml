@@ -3,13 +3,11 @@
         [Razor Pages]
     ] --> [Web API]
 
-    [Website] --> [ASP.NET Core]
-
-    [Web API] --> [ASP.NET Core]
-
     [<package> Web API |
         [Controllers] +-> [Models]
     ] --> [<database> SQLite]
 
+    [Website] --> [ASP.NET Core]
+    [Web API] --> [ASP.NET Core]
     [ASP.NET Core] --> [Kestrel Web Server]
 ]

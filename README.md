@@ -32,4 +32,4 @@ If using Visual Studio Code, the built in debugger will take care of building an
 
 ## Architecture
 
-![Architecture Diagram](Documentation/Architecular.png)
+![Architecture Diagram](Documentation/ArchitectureDiagram.png)
