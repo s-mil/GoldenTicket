@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using GoldenTicket.WebApi.Models;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace GoldenTicket.WebApi
 {
@@ -35,19 +37,30 @@ namespace GoldenTicket.WebApi
         {
             services.AddMvc();
 
-            services.AddDbContext<Models.GoldenTicketContext>(options => options.UseSqlite(_configuration["connectionString"]));
+            services.AddDbContext<GoldenTicketContext>(options => options.UseSqlite(_configuration["connectionString"]));
         }
 
         /// <summary>
         /// Configures the application pipeline and pre-startup operations
         /// </summary>
         /// <param name="app">For configuring the application pipeline</param>
-        public void Configure(IApplicationBuilder app)
-        {
+        public void Configure(IApplicationBuilder app, GoldenTicketContext context, ILogger<Startup> logger, IApplicationLifetime applicationLifetime)
+        {          
             if (_hostingEnvironment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            try
+			{
+				context.Database.Migrate();
+                logger.LogInformation("Database created and migrated to newest version.");
+			}
+			catch (System.Exception e)
+			{
+				logger.LogError(e, $"STOPPING SERVER: { e.Message }");
+				applicationLifetime.StopApplication();
+			}
 
             app.UseMvc();
         }
