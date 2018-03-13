@@ -1,4 +1,4 @@
-[<frame> Architectural Process Diagram |
+[<frame> Process Diagram |
     [<package> Website |
         [Thread Per Request]
     ] --> [Web API]
