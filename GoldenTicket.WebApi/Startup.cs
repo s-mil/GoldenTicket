@@ -33,6 +33,8 @@ namespace GoldenTicket.WebApi
         /// <param name="services">The service container for this application</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+
             services.AddDbContext<Models.GoldenTicketContext>(options => options.UseSqlite(_configuration["connectionString"]));
         }
 
