@@ -47,10 +47,7 @@ namespace GoldenTicket.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello Devin!");
-            });
+            app.UseMvc();
         }
     }
 }
