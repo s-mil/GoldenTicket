@@ -34,5 +34,25 @@ namespace GoldenTicket.WebApi.Models
         /// <returns>A new instance of this context</returns>
         public GoldenTicketContext(DbContextOptions<GoldenTicketContext> options) : base(options)
         { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //Technicians
+			modelBuilder.Entity<Technician>().HasKey(technician => technician.Id);
+			modelBuilder.Entity<Technician>().Property(Technician => Technician.Id).ValueGeneratedOnAdd().IsRequired();
+
+            //Clients
+			modelBuilder.Entity<Client>().HasKey(client => client.Id);
+			modelBuilder.Entity<Client>().Property(client => client.Id).ValueGeneratedOnAdd().IsRequired();
+
+            //Tickets
+			modelBuilder.Entity<Ticket>().HasKey(ticket => ticket.Id);
+			modelBuilder.Entity<Ticket>().Property(ticket => ticket.Id).ValueGeneratedOnAdd().IsRequired();
+            
+            //TechnicianTickets
+			modelBuilder.Entity<TechnicianTicket>().HasKey(technicianTicket => new { technicianTicket.TechnicianId, technicianTicket.TicketId });
+			modelBuilder.Entity<TechnicianTicket>().Property(technicianTicket => technicianTicket.TechnicianId).IsRequired();
+			modelBuilder.Entity<TechnicianTicket>().Property(technicianTicket => technicianTicket.TicketId).IsRequired();
+        }
     }
 }
