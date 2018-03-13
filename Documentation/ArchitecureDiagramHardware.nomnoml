@@ -1,0 +1,11 @@
+[<frame> Architecular Physical Diagram |
+[<package>Debian Physical Server| 
+[SQlite DB]
+[<frame> Web Server|
+Kesterel 1 Web API
+Kesterel 2 Website (for ticketing system)
+Apache (Landing page/reverse proxy to shield Kesterel instances from web)]
+[OAuth2 IdentityServer4]
+] <->[ISP/Internet]
+[ISP/Internet] <-> [Client web browser/device]
+]
