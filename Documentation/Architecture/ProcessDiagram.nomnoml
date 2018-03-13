@@ -1,13 +1,16 @@
-[<frame> Architecture Diagram |
+[<frame> Architectural Process Diagram |
     [<package> Website |
-        [Razor Pages]
+        [Thread Per Request]
     ] --> [Web API]
 
     [<package> Web API |
-        [Controllers] +-> [Models]
+        [Thread Per Request]
     ] --> [<database> SQLite]
 
     [Website] --> [ASP.NET Core]
     [Web API] --> [ASP.NET Core]
     [ASP.NET Core] --> [Kestrel Web Server]
 ]
+
+Logical
+Development
