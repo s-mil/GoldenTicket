@@ -7,7 +7,7 @@
             "request": "launch",
             "preLaunchTask": "buildWebApi",
             "program": "${workspaceRoot}/GoldenTicket.WebApi/bin/Debug/netcoreapp2.0/GoldenTicket.WebApi.dll",
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceRoot}/GoldenTicket.WebApi",
             "stopAtEntry": false,
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
@@ -19,7 +19,7 @@
             "request": "launch",
             "preLaunchTask": "buildWebsite",
             "program": "${workspaceRoot}/GoldenTicket.Website/bin/Debug/netcoreapp2.0/GoldenTicket.Website.dll",
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceRoot}/GoldenTicket.Website",
             "stopAtEntry": false,
             "launchBrowser": {
                 "enabled": true,
