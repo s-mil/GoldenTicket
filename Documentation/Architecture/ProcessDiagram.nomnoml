@@ -1,14 +1,14 @@
 [<frame> Process Diagram |
     [<package> Website |
         [Thread Per Request]
-    ] --> [Web API]
+    ] --> [Web Api]
 
-    [<package> Web API |
+    [<package> Web Api |
         [Thread Per Request]
     ] --> [<database> SQLite]
 
     [Website] --> [ASP.NET Core]
-    [Web API] --> [ASP.NET Core]
+    [Web Api] --> [ASP.NET Core]
     [ASP.NET Core] --> [Kestrel Web Server]
 ]
 
