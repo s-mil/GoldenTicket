@@ -8,7 +8,7 @@ namespace GoldenTicket.WebApi.Controllers
     [Route("ticket")]
     public class TicketController : Controller
     {
-        public async Task<IActionResult> GetTickets(GoldenTicketContext context)
+        public async Task<IActionResult> GetTickets([FromServices] GoldenTicketContext context)
         {
             return Ok(await context.Tickets.ToListAsync());
         }
