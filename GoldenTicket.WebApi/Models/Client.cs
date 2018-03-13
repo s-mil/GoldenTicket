@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace GoldenTicket.WebApi.Models
 {
@@ -10,7 +11,7 @@ namespace GoldenTicket.WebApi.Models
         /// <summary>
         /// The Id for this client
         /// </summary>
-        Guid Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// The first name of the client
