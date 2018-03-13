@@ -44,23 +44,19 @@ namespace GoldenTicket.WebApi
         /// Configures the application pipeline and pre-startup operations
         /// </summary>
         /// <param name="app">For configuring the application pipeline</param>
+        /// <param name="context"></param>
+        /// <param name="logger"></param>
+        /// <param name="applicationLifetime"></param>
         public void Configure(IApplicationBuilder app, GoldenTicketContext context, ILogger<Startup> logger, IApplicationLifetime applicationLifetime)
-        {          
+        {
+            context.Database.Migrate();
+            logger.LogInformation("Database created and migrated to newest version.");
+
             if (_hostingEnvironment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                SeedData.Initialize(context);
             }
-
-            try
-			{
-				context.Database.Migrate();
-                logger.LogInformation("Database created and migrated to newest version.");
-			}
-			catch (System.Exception e)
-			{
-				logger.LogError(e, $"STOPPING SERVER: { e.Message }");
-				applicationLifetime.StopApplication();
-			}
 
             app.UseMvc();
         }
