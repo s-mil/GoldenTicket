@@ -7,8 +7,12 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
   </ItemGroup>
 
 </Project>
