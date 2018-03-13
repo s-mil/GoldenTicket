@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GoldenTicket.WebApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,6 +14,7 @@ namespace GoldenTicket.WebApi
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<GoldenTicketContext>(options => options.UseSqlite())
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
