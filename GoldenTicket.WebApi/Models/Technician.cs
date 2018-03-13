@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GoldenTicket.WebApi.Models
 {
@@ -10,6 +12,7 @@ namespace GoldenTicket.WebApi.Models
         /// <summary>
         /// The Id for the Technician
         /// </summary>
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
         /// <summary>
