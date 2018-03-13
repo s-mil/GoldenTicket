@@ -1,4 +1,7 @@
 [<frame> Process Diagram |
+    [Website] --> [Identity Server 4]
+    [Web Api] --> [Identity Server 4]
+
     [<package> Website |
         [Thread Per Request]
     ] --> [Web Api]
@@ -9,8 +12,7 @@
 
     [Website] --> [ASP.NET Core]
     [Web Api] --> [ASP.NET Core]
+    [Identity Server 4] --> [ASP.NET Core]
     [ASP.NET Core] --> [Kestrel Web Server]
+    [Kestrel Web Server] --> [Apache2 Server]
 ]
-
-Logical
-Development
