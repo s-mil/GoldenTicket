@@ -1,14 +1,10 @@
-[<frame> Process Diagram |
+[<frame> Architecture Diagram |
     [Website] --> [Identity Server 4]
     [Web Api] --> [Identity Server 4]
 
-    [<package> Website |
-        [Thread Per Request]
-    ] --> [Web Api]
+    [Website] --> [Web Api]
 
-    [<package> Web Api |
-        [Thread Per Request]
-    ] --> [<database> SQLite]
+    [Web Api] --> [<database> SQLite]
 
     [Website] --> [ASP.NET Core]
     [Web Api] --> [ASP.NET Core]

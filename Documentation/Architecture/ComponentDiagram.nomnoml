@@ -1,4 +1,4 @@
-[<frame> Logical Diagram |
+[<frame> Component Diagram |
     [<package> Website |
         
     ] --> [Web Api]
