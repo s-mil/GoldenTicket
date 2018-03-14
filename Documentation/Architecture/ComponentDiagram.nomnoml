@@ -1,6 +1,26 @@
 [<frame> Component Diagram |
     [<package> Website |
-        
+        [Html] --> [Css]
+        [Html] --> [Javascript]
+
+        [<frame> Html |
+            Ticket Dashboard
+            Ticket Editor
+            Ticket Viewer |
+            Customer Dashboard
+            Customer Editor
+            Customer Viewer |
+            Technician Dashboard
+            Technician Editor
+            Technician Viewer
+        ]
+
+        [<frame> Javascript |
+            TicketManager
+            CustomerManager
+            TechnicianManager |
+            DashboardController
+        ]   
     ] --> [Web Api]
 
     [<package> Web Api |
@@ -72,6 +92,5 @@
         ]
     ]
 
-    [Website] --> [Identity Server 4]
     [Web Api] --> [Identity Server 4]
 ]
