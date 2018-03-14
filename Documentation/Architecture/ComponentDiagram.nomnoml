@@ -39,8 +39,25 @@
         ]
 
         [<frame> Controllers|
-            
-        ]
+            [TicketController |
+                Ticket Get(Guid id)
+                void Add(Ticket ticket)
+                void Delete(Guid id)
+                void Update(Guid id, Ticket ticket)
+            ]
+            [ClientController |
+                Client Get(Guid id)
+                void Add(Client client)
+                void Delete(Guid id)
+                void Update(Guid id, Client client)
+            ]
+            [TechnicianController |
+                Technician Get(Guid id)
+                void Add(Technician technician)
+                void Delete(Guid id)
+                void Update(Guid id, Technician technician)
+            ]
+        ] --> Models
     ]
 
     [<package> Identity Server 4 |
