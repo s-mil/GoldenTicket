@@ -1,14 +1,11 @@
 [<frame> Architecture Diagram |
-    [Website] --> [Identity Server 4]
-    [Web Api] --> [Identity Server 4]
-
     [Website] --> [Web Api]
 
     [Web Api] --> [<database> SQLite]
+    [Web Api] --> [Identity Server 4]
+    [Web Api] --> [Kestrel Web Server]
 
-    [Website] --> [ASP.NET Core]
-    [Web Api] --> [ASP.NET Core]
-    [Identity Server 4] --> [ASP.NET Core]
-    [ASP.NET Core] --> [Kestrel Web Server]
+    [Identity Server 4] --> [Kestrel Web Server]
+
     [Kestrel Web Server] --> [Apache2 Server]
 ]
