@@ -1,0 +1,11 @@
+[<frame> Architecture Diagram |
+    [Website] --> [Web Api]
+
+    [Web Api] --> [<database> SQLite]
+    [Web Api] --> [Identity Server 4]
+    [Web Api] --> [Kestrel Web Server]
+
+    [Identity Server 4] --> [Kestrel Web Server]
+
+    [Kestrel Web Server] --> [Apache2 Server]
+]

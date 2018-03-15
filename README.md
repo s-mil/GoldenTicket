@@ -29,7 +29,3 @@ If using Visual Studio Code, the built in debugger will take care of building an
 1. Open debugging pane
 1. Select project from launch drop down
 1. Hit `f5` or click the play button
-
-## Architecture
-
-![Architecture Diagram](Documentation/ArchitectureDiagram.png)

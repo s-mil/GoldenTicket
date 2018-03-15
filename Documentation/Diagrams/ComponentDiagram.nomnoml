@@ -1,0 +1,96 @@
+[<frame> Component Diagram |
+    [<package> Website |
+        [Html] --> [Css]
+        [Html] --> [Javascript]
+
+        [<frame> Html |
+            Ticket Dashboard
+            Ticket Editor
+            Ticket Viewer |
+            Customer Dashboard
+            Customer Editor
+            Customer Viewer |
+            Technician Dashboard
+            Technician Editor
+            Technician Viewer
+        ]
+
+        [<frame> Javascript |
+            TicketManager
+            CustomerManager
+            TechnicianManager |
+            DashboardController
+        ]   
+    ] --> [Web Api]
+
+    [<package> Web Api |
+        [<frame> Models|
+            [Client |
+                Guid Id
+                string FirstName
+                string LastName
+                string PhoneNumber
+                string EmailAddress
+                string Company
+                string Address
+                DateTime DateAdded
+            ] +- [Ticket]
+            
+            [Ticket |
+                Guid Id
+                Guid ClientId
+                string Title
+                string Description
+                int Complexity
+                bool IsUrgent
+            ] +- [TechnicianTicket]
+
+            [TechnicianTicket |
+                Guid TechnicianId
+                Guid TicketId
+            ]
+
+            [Technician |
+                Guid Id
+                bool IsAdmin
+                string Name
+                DateTime DateAdded
+            ] +- [TechnicianTicket]
+        ]
+
+        [<frame> Controllers|
+            [TicketController |
+                Ticket Get(Guid id)
+                Ticket\[\] Get(int index, int count)
+                void Add(Ticket ticket)
+                void Delete(Guid id)
+                void Update(Guid id, Ticket ticket)
+            ]
+            [ClientController |
+                Client Get(Guid id)
+                Client\[\] Get(int index, int count)
+                void Add(Client client)
+                void Delete(Guid id)
+                void Update(Guid id, Client client)
+            ]
+            [TechnicianController |
+                Technician Get(Guid id)
+                Technician\[\] Get(int index, int count)
+                void Add(Technician technician)
+                void Delete(Guid id)
+                void Update(Guid id, Technician technician)
+            ]
+        ] --> [Models]
+    ]
+
+    [<package> Identity Server 4 |
+        [User |
+            Guid Id
+            string Username
+            string PasswordHash
+            string Salt
+        ]
+    ]
+
+    [Web Api] --> [Identity Server 4]
+]
