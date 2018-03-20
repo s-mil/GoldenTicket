@@ -44,5 +44,15 @@ namespace GoldenTicket.WebApi.Models
         /// Notes for this ticket
         /// </summary>
         public string Notes { get; set; }
+
+        /// <summary>
+        /// The date added
+        /// </summary>
+        public DateTime DateAdded { get; set; }
+
+        /// <summary>
+        /// True if the ticket is open
+        /// </summary>
+        public bool Open { get; set; }
     }
 }
