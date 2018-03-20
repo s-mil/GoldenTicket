@@ -25,7 +25,7 @@ namespace GoldenTicket.WebApi.Models
         /// <summary>
         /// The collection of TechnicianTicket pivot models
         /// </summary>
-        public DbSet<TechnicianTicket> TechnicianTickets { get; set; }
+        public DbSet<TechnicianTicketTime> TechnicianTicketTimes { get; set; }
 
         /// <summary>
         /// The constructor for this context
@@ -38,9 +38,9 @@ namespace GoldenTicket.WebApi.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {            
             //TechnicianTickets
-			modelBuilder.Entity<TechnicianTicket>().HasKey(technicianTicket => new { technicianTicket.TechnicianId, technicianTicket.TicketId });
-			modelBuilder.Entity<TechnicianTicket>().Property(technicianTicket => technicianTicket.TechnicianId).IsRequired();
-			modelBuilder.Entity<TechnicianTicket>().Property(technicianTicket => technicianTicket.TicketId).IsRequired();
+			modelBuilder.Entity<TechnicianTicketTime>().HasKey(technicianTicket => new { technicianTicket.TechnicianId, technicianTicket.TicketId });
+			modelBuilder.Entity<TechnicianTicketTime>().Property(technicianTicket => technicianTicket.TechnicianId).IsRequired();
+			modelBuilder.Entity<TechnicianTicketTime>().Property(technicianTicket => technicianTicket.TicketId).IsRequired();
         }
     }
 }
