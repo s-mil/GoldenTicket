@@ -43,11 +43,13 @@
                 string Description
                 int Complexity
                 bool IsUrgent
-            ] +- [TechnicianTicket]
+            ] +- [TechnicianTicketTime]
 
-            [TechnicianTicket |
+            [TechnicianTicketTime |
                 Guid TechnicianId
                 Guid TicketId
+                Datetime Start
+                Datetime End
             ]
 
             [Technician |
@@ -55,16 +57,18 @@
                 bool IsAdmin
                 string Name
                 DateTime DateAdded
-            ] +- [TechnicianTicket]
+            ] +- [TechnicianTicketTime]
         ]
 
         [<frame> Controllers|
             [TicketController |
-                Ticket Get(Guid id)
-                Ticket\[\] Get(int index, int count)
-                void Add(Ticket ticket)
-                void Delete(Guid id)
-                void Update(Guid id, Ticket ticket)
+                Ticket Get(Guid id): Gets a ticket by id
+                Ticket\[\] Get(int index, int count): Gets a range of tickets in order
+                Ticket Add(Ticket ticket): Adds a ticket
+                void Delete(Guid id): Removes a ticket
+                Ticket Update(Guid id, Ticket ticket): Updates a ticket
+                Technician\[\] GetTechnicians(Guid id): Get technicians working on a ticket based on its id
+                
             ]
             [ClientController |
                 Client Get(Guid id)
