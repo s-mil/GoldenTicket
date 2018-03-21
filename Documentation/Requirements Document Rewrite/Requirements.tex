@@ -1,0 +1,131 @@
+\documentclass[letterpaper]{article}
+    \usepackage{amsmath}
+    \usepackage{tikz}
+    \usepackage{epigraph}
+    \usepackage{lipsum}
+    \setcounter{tocdepth}{1}
+    \renewcommand\epigraphflush{flushright}
+    \renewcommand\epigraphsize{\normalsize}
+    \setlength\epigraphwidth{0.7\textwidth}
+    
+    \definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+    
+    \DeclareFixedFont{\titlefont}{T1}{ppl}{b}{it}{0.5in}
+    
+    \makeatletter                       
+    \def\printauthor{%                  
+        {\large \@author}}              
+    \makeatother
+    \author{
+        Brittany Lacy \\
+        Drake Lambert \\  
+        Jeremy LeJeune \\
+        Jenna Meadors \\
+        Sam Miller \\
+       }
+    
+    % The following code is borrowed from:  https://tex.stackexchange.com/a/86310/10898
+    
+    \newcommand\titlepagedecoration{%
+    \begin{tikzpicture}[remember picture,overlay,shorten >= -10pt]
+    
+    \coordinate (aux1) at ([yshift=-15pt]current page.north east);
+    \coordinate (aux2) at ([yshift=-410pt]current page.north east);
+    \coordinate (aux3) at ([xshift=-4.5cm]current page.north east);
+    \coordinate (aux4) at ([yshift=-150pt]current page.north east);
+    
+    \begin{scope}[titlepagecolor!40,line width=12pt,rounded corners=12pt]
+    \draw
+      (aux1) -- coordinate (a)
+      ++(225:5) --
+      ++(-45:5.1) coordinate (b);
+    \draw[shorten <= -10pt]
+      (aux3) --
+      (a) --
+      (aux1);
+    \draw[opacity=0.6,titlepagecolor,shorten <= -10pt]
+      (b) --
+      ++(225:2.2) --
+      ++(-45:2.2);
+    \end{scope}
+    \draw[titlepagecolor,line width=8pt,rounded corners=8pt,shorten <= -10pt]
+      (aux4) --
+      ++(225:0.8) --
+      ++(-45:0.8);
+    \begin{scope}[titlepagecolor!70,line width=6pt,rounded corners=8pt]
+    \draw[shorten <= -10pt]
+      (aux2) --
+      ++(225:3) coordinate[pos=0.45] (c) --
+      ++(-45:3.1);
+    \draw
+      (aux2) --
+      (c) --
+      ++(135:2.5) --
+      ++(45:2.5) --
+      ++(-45:2.5) coordinate[pos=0.3] (d);   
+    \draw 
+      (d) -- +(45:1);
+    \end{scope}
+    \end{tikzpicture}%
+    }
+    
+\begin{document}
+\begin{titlepage}
+
+	\noindent
+	\titlefont The Golden Ticket\par
+	\epigraph{Software Requirements Document}%
+	{\textit{}\\ \textsc{}}
+	\null\vfill
+	\vspace*{1cm}
+	\noindent
+	\hfill
+	\begin{minipage}{0.35\linewidth}
+		\begin{flushright}
+			\printauthor
+		\end{flushright}
+	\end{minipage}
+	%
+	\begin{minipage}{0.02\linewidth}
+		\rule{1pt}{125pt}
+	\end{minipage}
+	\titlepagedecoration
+\end{titlepage}
+\tableofcontents
+\pagebreak
+\section{Preface}
+This document is a complete rewrite of the previously submitted version in order to better fit the format required of the requirements document. This document will contain all of the information of the previous document, and will additionally contain the sections as suggested in the textbook.
+
+In making this document we intend to layout the master plan for a ticketing system using the dot net core.
+\pagebreak
+
+
+\section{Introduction}
+Golden Ticket is designed to be a light weight adaptable ticketing system. There will be two different kinds of users for this system, the technicians that work the tickets and the administrators that oversee them. The technicians will have access to their assigned tickets, have properties that denote their experience and years with the company
+
+\pagebreak
+
+\section{Glossary}
+\lipsum
+
+\section{User Requirements definition}
+\lipsum
+
+\section{System Architecture}
+\lipsum
+
+\section{System Models}
+\lipsum
+
+\section{System Evolution}
+\lipsum
+
+\section{Appendices}
+\lipsum
+
+\section{Index}
+\lipsum
+
+
+
+\end{document}
