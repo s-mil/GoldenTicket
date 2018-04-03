@@ -11,9 +11,10 @@ using System;
 namespace GoldenTicket.WebApi.Migrations
 {
     [DbContext(typeof(GoldenTicketContext))]
-    partial class GoldenTicketContextModelSnapshot : ModelSnapshot
+    [Migration("20180403171101_Update 1")]
+    partial class Update1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
