@@ -1,12 +1,48 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GoldenTicket.WebApi.Models
 {
     public static class SeedData
     {
+        private static List<string> TechnicianNames = new List<string> 
+        {
+            "Madeline Booth",
+            "Charles Woods",
+            "Nico Perkins",
+            "Marie Wilson",
+            "Nancy Mays",
+            "Taryn Norman",
+            "Kieran Lam",
+            "Natalya Lynch",
+            "Gavin Preston",
+            "Kira Paul",
+            "Shyla Turner",
+            "Ana Wise",
+            "Rylan Bryan",
+            "Cailyn Melton",
+            "Rory Clark"
+        };
+
+        private static List<(string company, string firstName, string LastName)> Clients = new List<(string company, string firstName, string LastName)>
+        {
+            ("","",""),
+            ("","",""),
+            ("","",""),
+            ("","",""),
+            ("","",""),
+            ("","",""),
+            ("","",""),
+            ("","",""),
+            ("","",""),
+            ("","",""),
+            ("","",""),
+        };
+
+
         public static void Initialize(GoldenTicketContext context)
         {
             context.Technicians.RemoveRange(context.Technicians);
@@ -14,7 +50,7 @@ namespace GoldenTicket.WebApi.Models
             context.Clients.RemoveRange(context.Clients);
             context.TechnicianTicketTimes.RemoveRange(context.TechnicianTicketTimes);
             context.SaveChanges();
-            
+
             var randGenerator = new Random();
 
             for (var i = 0; i < 10; i++)
@@ -66,9 +102,10 @@ namespace GoldenTicket.WebApi.Models
                 var workTimesCount = randGenerator.Next(0, 10);
                 for (var i = 0; i < workTimesCount; i++)
                 {
-                    var start = ticket.DateAdded.AddHours(randGenerator.Next(1,60));
-                    var end = start.AddHours(randGenerator.Next(1,5));
-                    context.TechnicianTicketTimes.Add(new TechnicianTicketTime {
+                    var start = ticket.DateAdded.AddHours(randGenerator.Next(1, 60));
+                    var end = start.AddHours(randGenerator.Next(1, 5));
+                    context.TechnicianTicketTimes.Add(new TechnicianTicketTime
+                    {
                         Start = start,
                         End = end,
                         TechnicianId = context.Technicians.OrderBy(t => new Guid()).Take(1).First().Id,
