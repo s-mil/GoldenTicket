@@ -7,33 +7,33 @@
     \renewcommand\epigraphflush{flushright}
     \renewcommand\epigraphsize{\normalsize}
     \setlength\epigraphwidth{0.7\textwidth}
-    
+
     \definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
-    
+
     \DeclareFixedFont{\titlefont}{T1}{ppl}{b}{it}{0.5in}
-    
-    \makeatletter                       
-    \def\printauthor{%                  
-        {\large \@author}}              
+
+    \makeatletter
+    \def\printauthor{%
+        {\large \@author}}
     \makeatother
     \author{
         Brittany Lacy \\
-        Drake Lambert \\  
+        Drake Lambert \\
         Jeremy LeJeune \\
         Jenna Meadors \\
         Sam Miller \\
        }
-    
+
     % The following code is borrowed from:  https://tex.stackexchange.com/a/86310/10898
-    
+
     \newcommand\titlepagedecoration{%
     \begin{tikzpicture}[remember picture,overlay,shorten >= -10pt]
-    
+
     \coordinate (aux1) at ([yshift=-15pt]current page.north east);
     \coordinate (aux2) at ([yshift=-410pt]current page.north east);
     \coordinate (aux3) at ([xshift=-4.5cm]current page.north east);
     \coordinate (aux4) at ([yshift=-150pt]current page.north east);
-    
+
     \begin{scope}[titlepagecolor!40,line width=12pt,rounded corners=12pt]
     \draw
       (aux1) -- coordinate (a)
@@ -62,13 +62,13 @@
       (c) --
       ++(135:2.5) --
       ++(45:2.5) --
-      ++(-45:2.5) coordinate[pos=0.3] (d);   
-    \draw 
+      ++(-45:2.5) coordinate[pos=0.3] (d);
+    \draw
       (d) -- +(45:1);
     \end{scope}
     \end{tikzpicture}%
     }
-    
+
 \begin{document}
 \begin{titlepage}
 
@@ -95,7 +95,7 @@
 \pagebreak
 % This defines the expected readership of the document and describes its version history, including the rationale for the creation of a new version and a summary of the changes made in each version.
 \section{Preface}
-This document is a complete rewrite of the previously submitted version in order to better fit the format required of the requirements document. This document will contain all of the information of the previous document, and will additionally contain the sections as suggested in the textbook. 
+This document is a complete rewrite of the previously submitted version in order to better fit the format required of the requirements document. This document will contain all of the information of the previous document, and will additionally contain the sections as suggested in the textbook.
 
 Summary of changes:
 \begin{itemize}
@@ -108,7 +108,39 @@ In making this document we intend to layout the master plan for a ticketing syst
 
 % This describes the need for the system. It should briefly describe the system's functions and explain how it will work with other systems. It should also describe how the system fits into the overall business or strategic objectives of the organization commissioning the software.
 \section{Introduction}
-Golden Ticket is designed to be a light weight adaptable ticketing system. There will be two different kinds of users for this system, the technicians that work the tickets and the administrators that oversee them. The technicians will have access to their assigned tickets, have properties that denote their experience and years with the company. 
+The Golden Ticket is designed to be a lightweight web based ticketing system written using the c/# launguage. The front end of of the ticketing system will be a responsive designed website so that it is accessible on as many devices as possible. The backend for the sight will be a microservices implementation hosted on a debian server featuirng sqllitem, the dot net core, identity server 4, letsencrupt, apched web server and more. The server will feature continuous deployment, when a revision is pushed to the master branch the server will on its check (every minute) downlowad and deploy the change and restart any changes that are needed. In this ticketing system there will be two users of the interface, technicians and admins/managers.
+\begin(itemize}
+	\item Technicians will have access to the ticket queue and assigned tickets.
+	\item Admins will have access to the ticket queue, assigned tickets (if anay) and the admin portal.
+	\item The ticket queue will consist of all tickets that are not marked as complete. The ticket at the top of the queue will be the tiket whose due date is closest to now / farthest past due. Their will be options to filter views on tickets, such as only tickets assigned to you, only tickets at x dificulty level, etc.
+	\item A ticket will consist of the following items:
+	\begin{itemize}
+		\item  Title
+		\item  Description
+		\item Difficulty level
+		\item a boolean isPriority that can be set by adminsitrators to bring the ticket to the top of the list.
+		\item  Contact
+		\item Company/department
+		\item notes + time entrys
+		\item assinded technition
+		\item due date/ time
+	\end{itemize}
+	\item A contact will consist of the following items:
+	\begin{itemize}
+		\item Name
+		\item Phone number
+		\item Email address
+		\item title
+		\item company/department name
+	\end{itemize}
+	\item a company will consist of the following items:
+	\begin{itemize}
+		\item A list of contacts
+		\item A list of associated tickets
+		\item join date
+	\end{itemize}
+\item A Techniction will consist of the
+\end{itemize}
 
 \pagebreak
 
