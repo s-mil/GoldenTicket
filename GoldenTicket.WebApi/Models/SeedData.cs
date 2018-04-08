@@ -231,7 +231,8 @@ namespace GoldenTicket.WebApi.Models
                         Description = $"Super awesome ticket {i}",
                         Complexity = i % 3,
                         IsUrgent = randGenerator.Next(0, 5) == 0,
-                        Notes = "Terrible client to work with"
+                        Notes = "Terrible client to work with",
+                        Open = randGenerator.Next(0, 1) == 0
                     });
                 }
             }
