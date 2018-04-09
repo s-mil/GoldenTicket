@@ -6,11 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GoldenTicket.WebApi.Controllers
 {
-    public class ClientController : Controller
+    [Route("[controller]")]
+    public class ClientsController : Controller
     {
         private GoldenTicketContext _context;
 
-        public ClientController(GoldenTicketContext context)
+        public ClientsController(GoldenTicketContext context)
         {
             _context = context;
         }
