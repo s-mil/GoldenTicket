@@ -48,7 +48,72 @@ namespace GoldenTicket.WebApi.Controllers
             }
             _context.Tickets.Add(ticket);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetTicket), new {id = ticket.Id}, ticket);
+            return CreatedAtAction(nameof(GetTicket), new { id = ticket.Id }, ticket);
+        }
+
+        [HttpPut("{ticketId}")]
+        public async Task<IActionResult> UpdateTicketAsync([FromRoute] Guid ticketId, [FromBody] Ticket ticketUpdate)
+        {
+            var ticketExists = await _context.Tickets.AnyAsync(ticket => ticket.Id == ticketId);
+            if (!ticketExists)
+            {
+                return NotFound(new Ticket { Id = ticketId });
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            ticketUpdate.Id = ticketId;
+            _context.Tickets.Update(ticketUpdate);
+            await _context.SaveChangesAsync();
+            return Ok(ticketUpdate);
+        }
+
+        [HttpDelete("{ticketId}")]
+        public async Task<IActionResult> RemoveTicketAsync([FromRoute] Guid ticketId)
+        {
+            var ticket = await _context.Tickets.FindAsync(ticketId);
+            if (ticket == null)
+            {
+                return NotFound(new Ticket { Id = ticketId });
+            }
+            _context.Tickets.Remove(ticket);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpPost("{ticketId}/time")]
+        public async Task<IActionResult> AddTimeToTicketAsync([FromRoute] Guid ticketId, [FromBody] TechnicianTicketTime time)
+        {
+            var ticketExists = await _context.Tickets.AnyAsync(ticket => ticket.Id == ticketId);
+            if (!ticketExists)
+            {
+                return NotFound(new Ticket { Id = ticketId });
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var technicianExists = await _context.Technicians.AnyAsync(technician => technician.Id == time.TechnicianId);
+            if (!technicianExists)
+            {
+                return NotFound(new Technician { Id = time.TechnicianId });
+            }
+            _context.TechnicianTicketTimes.Add(time);
+            await _context.SaveChangesAsync();
+            return Ok(time);
+        }
+
+        [HttpGet("{ticketId}/time")]
+        public async Task<IActionResult> GetTimeForTicketAsync([FromRoute] Guid ticketId)
+        {
+            var ticketExists = await _context.Tickets.AnyAsync(ticket => ticket.Id == ticketId);
+            if (!ticketExists)
+            {
+                return NotFound(new Ticket { Id = ticketId });
+            }
+            var times = _context.TechnicianTicketTimes.Where(t => t.TicketId == ticketId);
+            return Ok(times);
         }
     }
 }
