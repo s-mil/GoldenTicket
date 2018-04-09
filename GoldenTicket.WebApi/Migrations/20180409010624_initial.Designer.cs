@@ -11,8 +11,8 @@ using System;
 namespace GoldenTicket.WebApi.Migrations
 {
     [DbContext(typeof(GoldenTicketContext))]
-    [Migration("20180403171101_Update 1")]
-    partial class Update1
+    [Migration("20180409010624_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,15 +62,18 @@ namespace GoldenTicket.WebApi.Migrations
 
             modelBuilder.Entity("GoldenTicket.WebApi.Models.TechnicianTicketTime", b =>
                 {
-                    b.Property<Guid>("TechnicianId");
-
-                    b.Property<Guid>("TicketId");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("End");
 
                     b.Property<DateTime>("Start");
 
-                    b.HasKey("TechnicianId", "TicketId");
+                    b.Property<Guid>("TechnicianId");
+
+                    b.Property<Guid>("TicketId");
+
+                    b.HasKey("Id");
 
                     b.ToTable("TechnicianTicketTimes");
                 });

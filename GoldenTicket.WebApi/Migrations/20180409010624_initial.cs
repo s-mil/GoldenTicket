@@ -41,15 +41,18 @@ namespace GoldenTicket.WebApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TechnicianTickets",
+                name: "TechnicianTicketTimes",
                 columns: table => new
                 {
+                    Id = table.Column<Guid>(nullable: false),
+                    End = table.Column<DateTime>(nullable: false),
+                    Start = table.Column<DateTime>(nullable: false),
                     TechnicianId = table.Column<Guid>(nullable: false),
                     TicketId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TechnicianTickets", x => new { x.TechnicianId, x.TicketId });
+                    table.PrimaryKey("PK_TechnicianTicketTimes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,9 +62,11 @@ namespace GoldenTicket.WebApi.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     ClientId = table.Column<Guid>(nullable: false),
                     Complexity = table.Column<int>(nullable: false),
+                    DateAdded = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     IsUrgent = table.Column<bool>(nullable: false),
                     Notes = table.Column<string>(nullable: true),
+                    Open = table.Column<bool>(nullable: false),
                     Title = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -79,7 +84,7 @@ namespace GoldenTicket.WebApi.Migrations
                 name: "Technicians");
 
             migrationBuilder.DropTable(
-                name: "TechnicianTickets");
+                name: "TechnicianTicketTimes");
 
             migrationBuilder.DropTable(
                 name: "Tickets");
