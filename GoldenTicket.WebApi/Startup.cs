@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace GoldenTicket.WebApi
 {
@@ -38,6 +39,12 @@ namespace GoldenTicket.WebApi
             services.AddMvc();
 
             services.AddDbContext<GoldenTicketContext>(options => options.UseSqlite(_configuration["connectionString"]));
+
+            // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Golden Ticket Api", Version = "v1" });
+            });
         }
 
         /// <summary>
@@ -57,6 +64,15 @@ namespace GoldenTicket.WebApi
                 app.UseDeveloperExceptionPage();
                 SeedData.Initialize(context);
             }
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Golden Ticket Api v1");
+            });
 
             app.UseMvc();
         }
