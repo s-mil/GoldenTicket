@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace GoldenTicket.WebApi.Models
 {
@@ -7,6 +8,12 @@ namespace GoldenTicket.WebApi.Models
     /// </summary>
     public class TechnicianTicketTime
     {
+        /// <summary>
+        /// The id.
+        /// </summary>
+        [Key]
+        public Guid Id { get; set; }
+
         /// <summary>
         /// The technician id
         /// </summary>
