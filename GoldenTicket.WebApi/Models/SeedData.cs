@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -10,63 +11,83 @@ namespace GoldenTicket.WebApi.Models
     {
         private static Technician[] _technicians = {
             new Technician {
-                Name = "Madeline Booth",
+                FirstName = "Drake", 
+                LastName = "Lambert",
                 IsAdmin = true
             },
             new Technician {
-                Name = "Charles Woods",
+                FirstName = "Madeline", 
+                LastName = "Booth",
                 IsAdmin = true
             },
             new Technician {
-                Name = "Nico Perkins",
+                FirstName = "Charles", 
+                LastName = "Woods",
                 IsAdmin = true
             },
             new Technician {
-                Name = "Marie Wilson",
+                FirstName = "Nico", 
+                LastName = "Perkins",
+                IsAdmin = true
+            },
+            new Technician {
+                FirstName = "Marie", 
+                LastName = "Wilson",
                 IsAdmin = false
             },
             new Technician {
-                Name = "Nancy Mays",
+                FirstName = "Nancy", 
+                LastName = "Mays",
                 IsAdmin = false
             },
             new Technician {
-                Name = "Taryn Norman",
+                FirstName = "Taryn", 
+                LastName = "Norman",
                 IsAdmin = false
             },
             new Technician {
-                Name = "Kieran Lam",
+                FirstName = "Kieran", 
+                LastName = "Lam",
                 IsAdmin = false
             },
             new Technician {
-                Name = "Natalya Lynch",
+                FirstName = "Natalya", 
+                LastName = "Lynch",
                 IsAdmin = false
             },
             new Technician {
-                Name = "Gavin Preston",
+                FirstName = "Gavin", 
+                LastName = "Preston",
                 IsAdmin = false
             },
             new Technician {
-                Name = "Kira Paul",
+                FirstName = "Kira", 
+                LastName = "Paul",
                 IsAdmin = false
             },
             new Technician {
-                Name = "Shyla Turner",
+                FirstName = "Shyla", 
+                LastName = "Turner",
                 IsAdmin = false
             },
             new Technician {
-                Name = "Ana Wise",
+                FirstName = "Ana", 
+                LastName = "Wise",
                 IsAdmin = false
             },
             new Technician {
-                Name = "Rylan Bryan",
+                FirstName = "Rylan", 
+                LastName = "Bryan",
                 IsAdmin = false
             },
             new Technician {
-                Name = "Cailyn Melton",
+                FirstName = "Cailyn", 
+                LastName = "Melton",
                 IsAdmin = false
             },
             new Technician {
-                Name = "Rory Clark",
+                FirstName = "Rory", 
+                LastName = "Clark",
                 IsAdmin = false
             }
         };
@@ -194,9 +215,12 @@ namespace GoldenTicket.WebApi.Models
             }
         };
 
-        public static void Initialize(GoldenTicketContext context)
+        public static void Initialize(GoldenTicketContext context, UserManager<Technician> userManager)
         {
-            context.Technicians.RemoveRange(context.Technicians);
+            foreach (var technician in userManager.Users)
+            {
+                userManager.DeleteAsync(technician).Wait();
+            }
             context.Tickets.RemoveRange(context.Tickets);
             context.Clients.RemoveRange(context.Clients);
             context.TechnicianTicketTimes.RemoveRange(context.TechnicianTicketTimes);
@@ -212,10 +236,11 @@ namespace GoldenTicket.WebApi.Models
             foreach (var technician in _technicians)
             {
                 technician.DateAdded = DateTime.Now.AddMonths(randGenerator.Next(-36, -25));
+                technician.UserName = $"{technician.FirstName}.{technician.LastName}";
+                userManager.CreateAsync(technician, "password").Wait();
             }
-
+            
             context.Clients.AddRange(_clients);
-            context.Technicians.AddRange(_technicians);
 
             context.SaveChanges();
 
@@ -248,7 +273,7 @@ namespace GoldenTicket.WebApi.Models
                     {
                         Start = start,
                         End = end,
-                        TechnicianId = context.Technicians.OrderBy(t => new Guid()).Take(1).First().Id,
+                        TechnicianId = userManager.Users.OrderBy(t => new Guid()).Take(1).First().Id,
                         TicketId = ticket.Id
                     });
                 }
