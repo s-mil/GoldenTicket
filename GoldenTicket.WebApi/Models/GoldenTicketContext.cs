@@ -8,11 +8,6 @@ namespace GoldenTicket.WebApi.Models
     public class GoldenTicketContext : DbContext
     {
         /// <summary>
-        /// The collection of technicians
-        /// </summary>
-        public DbSet<Technician> Technicians { get; set; }
-
-        /// <summary>
         /// The collection of clients
         /// </summary>
         public DbSet<Client> Clients { get; set; }
@@ -34,5 +29,10 @@ namespace GoldenTicket.WebApi.Models
         /// <returns>A new instance of this context</returns>
         public GoldenTicketContext(DbContextOptions<GoldenTicketContext> options) : base(options)
         { }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
     }
 }
