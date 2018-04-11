@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo cp -fr /home/sithis/docs/* /var/www/html
+sudo cp -fr /home/gold/GoldenTicket/docs/* /var/www/html
