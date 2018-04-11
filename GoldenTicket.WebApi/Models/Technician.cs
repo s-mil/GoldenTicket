@@ -1,32 +1,32 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace GoldenTicket.WebApi.Models
 {
     /// <summary>
     /// A Technician and information
     /// </summary>
-    public class Technician
+    public class Technician : IdentityUser<Guid>
     {
-        /// <summary>
-        /// The Id for the Technician
-        /// </summary>
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
-
         /// <summary>
         /// Is the Technician an Admin?
         /// </summary>
         public bool IsAdmin { get; set; }
 
         /// <summary>
-        /// The name of the Technician
+        /// The first name of the Technician
         /// </summary>
-        public string Name { get; set; }
+        public string FirstName { get; set; }
 
         /// <summary>
-        /// The Date the technician object was created
+        /// The last name of the Technician
+        /// </summary>
+        public string LastName { get; set; }
+
+        /// <summary>
+        /// The Date the technician was hired
         /// </summary>
         public DateTime DateAdded { get; set; }
     }
