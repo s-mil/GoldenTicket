@@ -1,8 +1,7 @@
-﻿using System;
-using GoldenTicket.IdentityServer.Data;
+﻿using GoldenTicket.IdentityServer.Data;
+using GoldenTicket.IdentityServer.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -26,7 +25,7 @@ namespace GoldenTicket.IdentityServer
         {
             services.AddDbContext<IdentityContext>(options => options.UseSqlite(_configuration["connectionString"]));
 
-            services.AddIdentity<IdentityUser<Guid>, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
 
             services.AddMvc();
         }
@@ -38,6 +37,8 @@ namespace GoldenTicket.IdentityServer
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseAuthentication();
 
             app.UseMvc();
         }
