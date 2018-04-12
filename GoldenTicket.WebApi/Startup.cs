@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,6 +41,8 @@ namespace GoldenTicket.WebApi
 
             services.AddDbContext<GoldenTicketContext>(options => options.UseSqlite(_configuration["connectionString"]));
 
+            services.AddIdentity<Technician, IdentityRole>().AddEntityFrameworkStores<GoldenTicketContext>();
+
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -54,7 +57,7 @@ namespace GoldenTicket.WebApi
         /// <param name="context"></param>
         /// <param name="logger"></param>
         /// <param name="applicationLifetime"></param>
-        public void Configure(IApplicationBuilder app, GoldenTicketContext context, ILogger<Startup> logger, IApplicationLifetime applicationLifetime)
+        public void Configure(IApplicationBuilder app, GoldenTicketContext context, ILogger<Startup> logger, IApplicationLifetime applicationLifetime, UserManager<Technician> userManager)
         {
             context.Database.Migrate();
             logger.LogInformation("Database created and migrated to newest version.");
@@ -62,7 +65,7 @@ namespace GoldenTicket.WebApi
             if (_hostingEnvironment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                SeedData.Initialize(context);
+                SeedData.Initialize(context, userManager);
             }
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
@@ -73,6 +76,8 @@ namespace GoldenTicket.WebApi
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Golden Ticket Api v1");
             });
+
+            app.UseAuthentication();
 
             app.UseMvc();
         }
