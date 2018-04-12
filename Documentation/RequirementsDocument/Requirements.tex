@@ -73,6 +73,24 @@
     \end{tikzpicture}%
     }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Glossories
+
+\newglossaryentry{client}
+{
+    name=Client,
+    description={The person/entitity that requests a service from the service company(users of the tickting system.}
+}
+\newglossaryentry{technician}
+{
+    name=Technician,
+    description={The person/entitity that works a ticket}
+}
+\newglossaryentry{administrator}
+{
+    name=Client,
+    description={The person/entitity that manages technicians and client relations, has the power to make tickets priority}
+}
 \begin{document}
 \begin{titlepage}
 
@@ -100,6 +118,11 @@
 % This defines the expected readership of the document and describes its version history, including the rationale for the creation of a new version and a summary of the changes made in each version.
 \section{Preface}
 This document is a complete rewrite of the previously submitted version in order to better fit the format required of the requirements document. This document will contain all of the information of the previous document, and will additionally contain the sections as suggested in the textbook.
+
+assumptions:
+ \begin{itemize}
+   \item The \gls{client} will
+ \end{itemize}
 
 Summary of changes: 
 \begin{itemize}
@@ -161,6 +184,8 @@ The Golden Ticket is designed to be a lightweight web based ticketing system wri
 
 % This defines the technical terms used in the document. You should not make assumptions about the experiences or expertise of the reader.
 \section{Glossary}
+\glsaddall
+\printglossaries
 \pagebreak
 
 % Here, you describe the services provided for the user. The nonfunctional system requirements should also be described in this section. This description may use natural language, diagrams, or other notations that are understandable to customers. Product and process standards that must be followed should be specified.
