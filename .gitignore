@@ -1,6 +1,6 @@
-/GoldenTicket.Web**/.vscode/**
-**/obj/**
-**/bin/**
+**/.vscode/
+**/obj/
+**/bin/
 **.db
 Documentation/Requirements Document Rewriteindent.log
 Documentation/Requirements Document Rewrite/.vscode/settings.json
