@@ -94,7 +94,7 @@ namespace GoldenTicket.WebApi.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var technicianExists = await _context.Technicians.AnyAsync(technician => technician.Id == time.TechnicianId);
+            var technicianExists = await _context.Set<Technician>().AnyAsync(technician => technician.Id == time.TechnicianId);
             if (!technicianExists)
             {
                 return NotFound(new Technician { Id = time.TechnicianId });
