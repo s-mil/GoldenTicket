@@ -7,16 +7,20 @@ namespace GoldenTicket.Controllers
 {
     public class HomeController : Controller
     {
-        // private SignInManager<Technician> _signInManager;
+        private SignInManager<Technician> _signInManager;
 
-        // public HomeController(SignInManager<Technician> signInManager)
-        // {
-        //     _signInManager = signInManager;
-        // }
+        public HomeController(SignInManager<Technician> signInManager)
+        {
+            _signInManager = signInManager;
+        }
 
         [HttpGet]
         public IActionResult Index()
         {
+            if (!_signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction(nameof(AccountController.Login), "Account");
+            }
             return View();
         }
     }
