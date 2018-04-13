@@ -5,8 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@ViewData["Title"]</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @RenderSection("Style", required: false)
 </head>
 <body>
     @RenderBody()
+
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
