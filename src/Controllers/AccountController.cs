@@ -27,9 +27,9 @@ namespace GoldenTicket.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginRequest loginRequest, [FromServices] UserManager<Technician> um)
+        public async Task<IActionResult> Login(LoginRequest loginRequest)
         {
-            var result = await _signInManager.PasswordSignInAsync(loginRequest.Username, loginRequest.Password, false, false);
+            var result = await _signInManager.PasswordSignInAsync(loginRequest.Username, loginRequest.Password, loginRequest.RememberMe, false);
 
             if (result.Succeeded)
             {
