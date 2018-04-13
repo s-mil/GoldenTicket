@@ -1,13 +1,20 @@
 ﻿using System.Diagnostics;
 using GoldenTicket.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GoldenTicket.Controllers
 {
-    [Route("")]
     public class HomeController : Controller
     {
-        [HttpGet("")]
+        // private SignInManager<Technician> _signInManager;
+
+        // public HomeController(SignInManager<Technician> signInManager)
+        // {
+        //     _signInManager = signInManager;
+        // }
+
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
