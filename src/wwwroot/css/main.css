@@ -1,7 +1,4 @@
 
-
-
-
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
@@ -26,7 +23,8 @@
 
 body, html {
 	height: 100%;
-	font-family: Ubuntu-Regular, sans-serif;
+  font-family: Ubuntu-Regular, sans-serif;
+  background-color: #461D7C
 }
 
 /*---------------------------------------------*/
