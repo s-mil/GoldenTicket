@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using GoldenTicket.Models;
+using GoldenTicket.Models.AccountViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -27,9 +28,17 @@ namespace GoldenTicket.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login()
+        public async Task<IActionResult> LoginAsync([FromForm] LoginRequest loginRequest)
         {
-            return View();
+            var result = await _signInManager.PasswordSignInAsync(loginRequest.UserName, loginRequest.Password, false, false);
+
+            if (result.Succeeded)
+            {
+                _logger.LogInformation($"{User.Identity.Name} logged in.");
+                return RedirectToAction(nameof(HomeController.Index), nameof(HomeController));
+            }
+
+            return View(loginRequest);
         }
     }
 }
