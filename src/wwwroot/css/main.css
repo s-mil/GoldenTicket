@@ -48,7 +48,7 @@ a:focus {
 
 a:hover {
 	text-decoration: none;
-  color: #403866;
+  color: #B8860B;
 }
 
 /*---------------------------------------------*/
@@ -297,7 +297,7 @@ iframe {
   height: 18px;
   border-radius: 3px;
   background: #fff;
-  border: 2px solid #827ffe;
+  border: 2px solid #B8860C;
   left: 0;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -341,7 +341,7 @@ iframe {
   padding: 0 20px;
   width: 100%;
   height: 62px;
-  background-color: #827ffe;
+  background-color: #B8860B;
   border-radius: 3px;
 
   -webkit-transition: all 0.4s;
