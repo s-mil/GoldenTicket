@@ -39,5 +39,11 @@ namespace GoldenTicket.Controllers
 
             return View(loginRequest);
         }
+
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }
