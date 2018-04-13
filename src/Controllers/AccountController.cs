@@ -9,13 +9,12 @@ namespace GoldenTicket.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<Technician> _userManager;
         private readonly SignInManager<Technician> _signInManager;
+
         private readonly ILogger _logger;
 
-        public AccountController(UserManager<Technician> userManager, SignInManager<Technician> signInManager, ILogger<AccountController> logger)
+        public AccountController(SignInManager<Technician> signInManager, ILogger<AccountController> logger)
         {
-            _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
         }
