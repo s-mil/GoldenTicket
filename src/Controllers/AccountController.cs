@@ -20,21 +20,21 @@ namespace GoldenTicket.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> LoginAsync()
+        public async Task<IActionResult> Login()
         {
             await _signInManager.SignOutAsync();
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoginAsync([FromForm] LoginRequest loginRequest)
+        public async Task<IActionResult> Login(LoginRequest loginRequest, [FromServices] UserManager<Technician> um)
         {
-            var result = await _signInManager.PasswordSignInAsync(loginRequest.UserName, loginRequest.Password, false, false);
+            var result = await _signInManager.PasswordSignInAsync(loginRequest.Username, loginRequest.Password, false, false);
 
             if (result.Succeeded)
             {
                 _logger.LogInformation($"{User.Identity.Name} logged in.");
-                return RedirectToAction(nameof(HomeController.Index), nameof(HomeController));
+                return RedirectToAction(nameof(HomeController.Index), "Home");
             }
 
             return View(loginRequest);
