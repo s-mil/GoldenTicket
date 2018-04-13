@@ -3,6 +3,8 @@ using GoldenTicket.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,6 +40,14 @@ namespace GoldenTicket
         {
             services.AddMvc();
 
+            services.Configure<MvcOptions>(options =>
+            {
+                if (!_hostingEnvironment.IsDevelopment())
+                {
+                    options.Filters.Add(new RequireHttpsAttribute());
+                }
+            });
+
             services.AddDbContext<GoldenTicketContext>(options => options.UseSqlite(_configuration["connectionString"]));
 
             services.AddIdentity<Technician, IdentityRole>().AddEntityFrameworkStores<GoldenTicketContext>().AddDefaultTokenProviders();
@@ -59,6 +69,11 @@ namespace GoldenTicket
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                var options = new RewriteOptions().AddRedirectToHttps();
+                app.UseRewriter(options);
+            }
 
             app.UseStaticFiles();
 
@@ -79,7 +94,7 @@ namespace GoldenTicket
             {
                 SeedData.Initialize(context, userManager);
             }
-            userManager.CreateAsync(new Technician {UserName = "admin"}, _configuration["adminPassword"]).Wait();
+            userManager.CreateAsync(new Technician { UserName = "admin" }, _configuration["adminPassword"]).Wait();
         }
     }
 }
