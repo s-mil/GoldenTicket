@@ -9,11 +9,6 @@ namespace GoldenTicket.Data
     {
         private static Technician[] _technicians = {
             new Technician {
-                FirstName = "Drake", 
-                LastName = "Lambert",
-                IsAdmin = true
-            },
-            new Technician {
                 FirstName = "Madeline", 
                 LastName = "Booth",
                 IsAdmin = true
