@@ -6,7 +6,7 @@ Wow, what a great ticketing system!
 
 The Golden Ticket system consists of two services:
 
-- GoldenTicket.WebApi
+- GoldenTicket
 - GoldenTicket.Website
 
 You can build and run both of the services in the same way from within their respective folders.
