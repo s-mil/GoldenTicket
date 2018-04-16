@@ -239,7 +239,7 @@ namespace GoldenTicket.Data
 
             foreach (var client in context.Clients)
             {
-                var ticketCount = randGenerator.Next(0, 7);
+                var ticketCount = randGenerator.Next(0, 10);
                 for (var i = 0; i < ticketCount; i++)
                 {
                     context.Tickets.Add(new Ticket
@@ -247,10 +247,11 @@ namespace GoldenTicket.Data
                         ClientId = client.Id,
                         Title = $"{client.Company}: Case {i}",
                         Description = $"Super awesome ticket {i}",
-                        Complexity = i % 3,
+                        Complexity = i % 3 + 1,
                         IsUrgent = randGenerator.Next(0, 5) == 0,
                         Notes = "Terrible client to work with",
-                        Open = randGenerator.Next(0, 1) == 0
+                        Open = randGenerator.Next(0, 2) == 0,
+                        DateAdded = DateTime.Now.AddMonths(randGenerator.Next(-24, -12))
                     });
                 }
             }
