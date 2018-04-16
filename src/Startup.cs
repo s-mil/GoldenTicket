@@ -93,7 +93,7 @@ namespace GoldenTicket
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Tickets}/{action=All}/{id?}");
             });
         }
 
