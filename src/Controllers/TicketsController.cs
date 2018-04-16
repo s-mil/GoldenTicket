@@ -10,16 +10,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GoldenTicket.Controllers
 {
+    /// <summary>
+    /// Controller for managing tickets
+    /// </summary>
     [Authorize]
     public class TicketsController : Controller
     {
         private GoldenTicketContext _context;
-
+        /// <summary>
+        /// Initializes private variable _context
+        /// </summary>
+        /// <param name="context">context of current ticket</param>
         public TicketsController(GoldenTicketContext context)
         {
             _context = context;
         }
 
+        /// <summary>
+        /// Used to view all tickets in queue
+        /// </summary>
+        /// <param name="includeClosed">boolean for including closed tickets</param>
+        /// <returns>view list of ordered tickets</returns>
         [HttpGet]
         public async Task<IActionResult> All([FromQuery] bool includeClosed = false)
         {
@@ -38,6 +49,11 @@ namespace GoldenTicket.Controllers
             return View(orderedTickets);
         }
 
+        /// <summary>
+        /// Opens a new ticket
+        /// </summary>
+        /// <param name="id">unique id of ticket</param>
+        /// <returns>view of the new ticket</returns>
         [HttpGet]
         public async Task<IActionResult> Open([FromRoute] Guid id)
         {
@@ -47,6 +63,11 @@ namespace GoldenTicket.Controllers
             return View(new TicketDetails { Ticket = ticket, Client = client, Times = times});
         }
 
+        /// <summary>
+        /// Open a ticket for editiing
+        /// </summary>
+        /// <param name="id">unique id of ticket</param>
+        /// <returns>view of the ticket to edit</returns>
         [HttpGet]
         public async Task<IActionResult> Edit([FromRoute] Guid id)
         {
@@ -54,6 +75,10 @@ namespace GoldenTicket.Controllers
             return View(ticket);
         }
 
+        /// <summary>
+        /// Orders the tickets into a list
+        /// </summary>
+        /// <returns>ordered ticket list</returns>
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -69,6 +94,11 @@ namespace GoldenTicket.Controllers
             return Ok(orderedTickets);
         }
 
+        /// <summary>
+        /// Gets a ticket
+        /// </summary>
+        /// <param name="id">unique id of ticket</param>
+        /// <returns>error if ticket doesn't exist or success response</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTicket([FromRoute] Guid id)
         {
@@ -76,6 +106,11 @@ namespace GoldenTicket.Controllers
             return ticket == null ? NotFound(new Ticket { Id = id }) : Ok(ticket) as IActionResult;
         }
 
+        /// <summary>
+        /// Adds a ticket to ticket list
+        /// </summary>
+        /// <param name="ticket">the ticket to be added</param>
+        /// <returns>ticket added response</returns>
         [HttpPost]
         public async Task<IActionResult> AddTicketAsync([FromBody] Ticket ticket)
         {
@@ -88,6 +123,12 @@ namespace GoldenTicket.Controllers
             return CreatedAtAction(nameof(GetTicket), new { id = ticket.Id }, ticket);
         }
 
+        /// <summary>
+        /// Updates a ticket
+        /// </summary>
+        /// <param name="ticketId">the ticket id</param>
+        /// <param name="ticketUpdate">the update to the ticket</param>
+        /// <returns>error if ticket doesn't exist or success response</returns>
         [HttpPut("{ticketId}")]
         public async Task<IActionResult> UpdateTicketAsync([FromRoute] Guid ticketId, [FromBody] Ticket ticketUpdate)
         {
@@ -106,6 +147,11 @@ namespace GoldenTicket.Controllers
             return Ok(ticketUpdate);
         }
 
+        /// <summary>
+        /// Removes a ticket
+        /// </summary>
+        /// <param name="ticketId">unique id of ticket</param>
+        /// <returns>if ticket exists, a no content reponse, else 404 error</returns>
         [HttpDelete("{ticketId}")]
         public async Task<IActionResult> RemoveTicketAsync([FromRoute] Guid ticketId)
         {
@@ -119,6 +165,12 @@ namespace GoldenTicket.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Adds time to a ticket
+        /// </summary>
+        /// <param name="ticketId">unique id of ticket</param>
+        /// <param name="time">time for completion</param>
+        /// <returns>time added successfully response if ticket exists, ticket state is valid, and tech exists</returns>
         [HttpPost("{ticketId}/time")]
         public async Task<IActionResult> AddTimeToTicketAsync([FromRoute] Guid ticketId, [FromBody] TechnicianTicketTime time)
         {
@@ -141,6 +193,11 @@ namespace GoldenTicket.Controllers
             return Ok(time);
         }
 
+        /// <summary>
+        /// Gets the time for a ticket
+        /// </summary>
+        /// <param name="ticketId">unique id of ticket</param>
+        /// <returns>ticket time</returns>
         [HttpGet("{ticketId}/time")]
         public async Task<IActionResult> GetTimeForTicketAsync([FromRoute] Guid ticketId)
         {
