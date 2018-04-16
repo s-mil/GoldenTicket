@@ -3,48 +3,48 @@
 @inject SignInManager<Technician> SignInManager 
 @inject UserManager<Technician> UserManager
 
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>@ViewData["Title"] - Golden Ticket</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>@ViewData["Title"] - Golden Ticket</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <!-- Compiled and minified CSS -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"> @RenderSection("Style", required: false)
-      
-</head>
 
-<body>
+    </head>
+
+    <body>
       <nav>
           <div class="nav-wrapper">
            <ul class="right hide-on-med-and-down">
             @if (SignInManager.IsSignedIn(User)) {
-    <li class="nav-item">
-      Hello @UserManager.GetUserName(User)!
-    </li>
-    <li class="nav-item">
-      <a asp-controller="Account" asp-action="Login">Log out</a>
-    </li>
-  } 
-  else 
-  {
-    <li class="nav-item">
-      <a asp-controller="Account" asp-action="Login">Log in</a>
-    </li>
-  }
-    <li>
-      <a asp-controller="Tickets" asp-action="All">Tickets</a>
-    </li>
-    <li>
-      <a asp-controller="Clients" asp-action="All">Clients</a>
-    </li>
-  </ul>
+            <li class="nav-item">
+              Hello @UserManager.GetUserName(User)!
+            </li>
+            <li class="nav-item">
+              <a asp-controller="Account" asp-action="Login">Log out</a>
+            </li>
+            } 
+            else 
+            {
+            <li class="nav-item">
+              <a asp-controller="Account" asp-action="Login">Log in</a>
+            </li>
+            }
+            <li>
+              <a asp-controller="Tickets" asp-action="All">Tickets</a>
+            </li>
+            <li>
+              <a asp-controller="Clients" asp-action="All">Clients</a>
+            </li>
+          </ul>
         </div>
       </nav>
-
-  <h1>@ViewData["Title"]</h1>
+    
+      <h1>@ViewData["Title"]</h1>
       @RenderBody() @RenderSection("Scripts", required: false)
 
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
