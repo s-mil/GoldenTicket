@@ -5,9 +5,11 @@
     \usepackage{lipsum}
     \usepackage{glossaries}
     \usepackage{graphicx}
+    \usepackage{imakeidx}
     \graphicspath{{Images/}}
     \setcounter{tocdepth}{1}
     \makeglossaries
+    \makeindex[columns=3, title=Alphabetical Index]
     \renewcommand\epigraphflush{flushright}
     \renewcommand\epigraphsize{\normalsize}
     \setlength\epigraphwidth{0.7\textwidth}
@@ -124,7 +126,7 @@ assumptions:
    \item The \gls{client} will
  \end{itemize}
 
-Summary of changes: 
+Summary of changes:
 \begin{itemize}
 	\item One
 	\item two
@@ -141,7 +143,7 @@ The Golden Ticket is designed to be a lightweight web based ticketing system wri
 	\item Technicians will have access to the ticket queue and assigned tickets.
 	\item Admins will have access to the ticket queue, assigned tickets (if any) and the admin portal.
 	\item The ticket queue will consist of all tickets that are not marked as complete. The ticket at the top of the queue will be the ticket whose due date is closest to now / farthest past due. Their will be options to filter views on tickets, such as only tickets assigned to you, only tickets at x difficulty level, etc.
-	\item A ticket will consist of the following items:
+	\item A \index{ticket} will consist of the following items:
 	      \begin{itemize}
 		      \item Title
 		      \item Description
@@ -153,7 +155,7 @@ The Golden Ticket is designed to be a lightweight web based ticketing system wri
 		      \item assigned technician
 		      \item due date/ time
 	      \end{itemize}
-	\item A contact will consist of the following items:
+	\item A \index{contact} will consist of the following items:
 	      \begin{itemize}
 		      \item Name
 		      \item Phone number
@@ -161,13 +163,13 @@ The Golden Ticket is designed to be a lightweight web based ticketing system wri
 		      \item Title
 		      \item Company/department name
 	      \end{itemize}
-	\item a company will consist of the following items:
+	\item a \index{company} will consist of the following items:
 	      \begin{itemize}
 		      \item A list of contacts
 		      \item A list of associated tickets
 		      \item join date
 	      \end{itemize}
-  \item A Technician will consist of the following items:
+  \item A \index{Technician} will consist of the following items:
         \begin{itemize}
           \item Join date
           \item experience level
@@ -175,9 +177,9 @@ The Golden Ticket is designed to be a lightweight web based ticketing system wri
           \item phone
           \item list of assigned tickets
         \end{itemize}
-  \item An administrator will consist of the following items:
+  \item An \index{administrator} will consist of the following items:
         \begin{itemize}
-          \item 
+          \item
         \end{itemize}
 \end{enumerate}
 \pagebreak
@@ -190,19 +192,21 @@ The Golden Ticket is designed to be a lightweight web based ticketing system wri
 
 % Here, you describe the services provided for the user. The nonfunctional system requirements should also be described in this section. This description may use natural language, diagrams, or other notations that are understandable to customers. Product and process standards that must be followed should be specified.
 \section{User Requirements definition}
+
+
 \pagebreak
 
 % This chapter presents a high-level overview of the anticipated system architecture, showing the distribution of functions across system modules. Architectural components that are reused should be highlighted.
 \section{System Architecture}
 \begin{figure}[htbp]
-  \includegraphics[scale = .5]{ArchitectureDiagram.png}
+  \includegraphics[scale = .5]{ArchitectureDiagram}
   \caption{Architecture Diagram}[The diagram describing the architecture of the system]
   \centering
 \end{figure}
 The above figure describes the main processes and applications that will be used to run this system.
 
 \begin{figure}[htbp]
-  \includegraphics[scale =.5, width = \textwidth, height = \textheight]{ComponentDiagram.png}
+  \includegraphics[scale =.5, width = \textwidth, height = \textheight]{ComponentDiagram}
   \caption{Component Diagram}[The diagram describing the components and classes of the system]
   \centering
 \end{figure}
@@ -210,6 +214,62 @@ The above figure describes the main processes and applications that will be used
 
 % This describes the functional and nonfunctional requirements in more detail. If necessary, further detail may also be added to the nonfunctional requirements. Interfaces to other systems may be defined.
 \section{System Requirements Specification}
+
+\begin{figure}[htbp]
+  \includegraphics[scale = .5]{CreateAdmin}
+  \caption{Create Admin}[The above table describes the requirements of implementing the process of creating an administrator account.]
+  \centering
+\end{figure}
+
+\begin{figure}[htbp]
+  \includegraphics[scale = .5]{CreateTech}
+  \caption{Create Technician}[The above table describes the requirements of implementing the process of creating a technician account.]
+  \centering
+\end{figure}
+
+\begin{figure}[htbp]
+  \includegraphics[scale = .5]{CreateClient}
+  \caption{Architecture Diagram}[The above table describes the requirements of implementing the process of creating a client entry.]
+  \centering
+\end{figure}
+
+\begin{figure}[htbp]
+  \includegraphics[scale = .5]{MakeTicket}
+  \caption{Create Ticket}[The above table describes the requirements of implementing the process of creating a ticket.]
+  \centering
+\end{figure}
+
+\begin{figure}[htbp]
+  \includegraphics[scale = .5]{MakeTicket}
+  \caption{Create Ticket}[The above table describes the requirements of implementing the process of creating a ticket.]
+  \centering
+\end{figure}
+
+\begin{figure}[htbp]
+  \includegraphics[scale = .5]{PrioTicket}
+  \caption{Prioritize Tickets}[The above table describes the requirements of implementing the process of having the ticket queue automatically prioritized based on the number of times that a client has been served and prioritization by administrators.]
+  \centering
+\end{figure}
+
+\begin{figure}[htbp]
+  \includegraphics[scale = .5]{TicketQueue}
+  \caption{Ticket Queue}[The above table describes the requirements of implementing the ticket queue.]
+  \centering
+\end{figure}
+
+\begin{figure}[htbp]
+  \includegraphics[scale = .5]{PayscaleAlg}
+  \caption{Pay-scale Algorithm}[The above table describes the requirements of implementing the process of automatically scaling the billable rate for the technician based on the number of years of service that they have with the company.]
+  \centering
+\end{figure}
+
+\begin{figure}[htbp]
+  \includegraphics[scale = .5]{MakeTicket}
+  \caption{Create Ticket}[The above table describes the requirements of implementing the process of creating a ticket.]
+  \centering
+\end{figure}
+
+
 \pagebreak
 
 % This chapter includes graphical system models showing the relationships between the system components and the system and its environment. Examples of possible models are object models, data-flow models, or semantic data models.
@@ -218,7 +278,7 @@ The above figure describes the main processes and applications that will be used
 
 % This describes the fundamental assumptions on which the system is based, and any anticipated changes due to hardware evolution, changing user needs, and so on. This section is useful for system designers as it may help them avoid design decisions that would constrain likely future changes to the system.
 \section{System Evolution}
-One of the biggest assumptions we are making with this system is that the end client will not access the system in any capacity. In makeing this choice we are making the system more secure and the ability for the technicians to speak freely (within the com)
+One of the biggest assumptions we are making with this system is that the end client will not access the system in any capacity. In making this choice we are making the system more secure and the ability for the technicians to speak freely (within the companies guidelines of course)
 
 \pagebreak
 
@@ -228,7 +288,7 @@ One of the biggest assumptions we are making with this system is that the end cl
 
 % Several indexes to the document may be included. As well as a normal alphabetic index, there may be an index of diagrams, an index of functions, and so on.
 \section{Index}
-
+\printindex
 \listoffigures
 \pagebreak
 
