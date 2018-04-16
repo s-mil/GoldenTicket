@@ -1,0 +1,60 @@
+@{
+    ViewData["Title"] = "All Tickets";
+}
+@using GoldenTicket.Models
+@using System.Collections.Generic
+@model IEnumerable<Ticket>
+
+@if ((bool)ViewData["includeClosed"]) {
+    <a asp-action="All">Exclude Closed Tickets</a>
+} else {
+    <a asp-action="All" asp-route-includeClosed="true">Include Closed Tickets</a>
+}
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Date Added
+        </th>
+        <th>
+            Urgent
+        </th>
+        <th>
+            Notes
+        </th>
+        <th>
+            Open
+        </th>
+    </tr>
+    @foreach (var ticket in Model) 
+    {
+    <tr>
+        <td>
+            @ticket.Title
+        </td>
+        <td>
+            @ticket.Description
+        </td>
+        <td>
+            @ticket.DateAdded
+        </td>
+        <td>
+            @ticket.IsUrgent
+        </td>
+        <td>
+            @ticket.Notes
+        </td>
+        <td>
+            @ticket.Open
+        </td>
+        <td>
+            <a asp-action="Open" asp-route-id="@ticket.Id">Open</a>
+        </td>
+    </tr>
+    }
+</table>
