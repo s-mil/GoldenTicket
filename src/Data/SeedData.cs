@@ -264,7 +264,7 @@ namespace GoldenTicket.Data
                 for (var i = 0; i < workTimesCount; i++)
                 {
                     var start = ticket.DateAdded.AddHours(randGenerator.Next(1, 60));
-                    var end = start.AddHours(randGenerator.Next(1, 5));
+                    var end = start.AddMinutes(randGenerator.Next(15, 60));
                     context.TechnicianTicketTimes.Add(new TechnicianTicketTime
                     {
                         Start = start,
