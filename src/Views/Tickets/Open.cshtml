@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = Model.Ticket.Title;
+}
+@using GoldenTicket.Models.TicketsViewModels
+@using System.Collections.Generic
+@model TicketDetails
+
+@if (Model.Ticket.IsUrgent) {
+    <h3 style="background-color: red">URGENT</h3>
+}
+
+<a asp-action="Edit" asp-route-id="@Model.Ticket.Id">Edit</a>
+
+<h3>Complexity: @Model.Ticket.Complexity</h3>
+
+<h3>Date Added: @Model.Ticket.DateAdded</h3>
+
+<h3>Status: @(Model.Ticket.Open ? "Open" : "Closed")</h3>
+
+<h3>Description</h3>
+<p>@Model.Ticket.Description</p>
+
+<h3>Notes</h3>
+<p>@Model.Ticket.Notes</p>
+
+
+<h3>Technician Times</h3>
+<table>
+    <tr>
+        <th>Technician</th>
+        <th>Start</th>
+        <th>End</th>
+    </tr>
+    @foreach (var time in Model.Times) {
+        
+    }
+</table>
