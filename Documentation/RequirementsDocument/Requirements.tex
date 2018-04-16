@@ -8,7 +8,7 @@
     \usepackage{imakeidx}
     \usepackage{hyperref}
     \graphicspath{{Images/}}
-    \setcounter{tocdepth}{1}
+    \setcounter{tocdepth}{2}
     \makeglossaries
     \makeindex[columns=2, title=Alphabetical Index]
     \renewcommand\epigraphflush{flushright}
@@ -77,23 +77,43 @@
     }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Glossories
+% Glossaries
 
 \newglossaryentry{client}
 {
     name=Client,
-    description={The person/entitity that requests a service from the service company(users of the tickting system.}
+    description={The person/entity that requests a service from the service company(users of the ticketing system}
 }
 \newglossaryentry{technician}
 {
     name=Technician,
-    description={The person/entitity that works a ticket}
+    description={The person/entity that works a ticket}
 }
 \newglossaryentry{administrator}
 {
     name=Client,
-    description={The person/entitity that manages technicians and client relations, has the power to make tickets priority}
+    description={The person/entity that manages technicians and client relations, has the power to make tickets priority}
 }
+\newglossaryentry{isPriority}
+{
+    name=isPriority,
+    description={A boolean value that sets a ticket as priority, can be set by administrators}
+}
+
+\newglossaryentry{EF}
+{
+    name= Entity Framework,
+    description={\href{https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/?view=aspnetcore-2.1} A framework that allows for .net core applications to automatically create and manage entities such as an SQL-lite database }
+}
+
+\newglossaryentry{MVC}
+{
+  name= {Model View Controller},
+  description={\href{https://docs.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-2.1} A Framework of application development that is used by the \gls{EF} in order to generate the SQL-lite database.}
+}
+
+
+
 \begin{document}
 \begin{titlepage}
 
@@ -124,16 +144,16 @@ This document is a complete rewrite of the previously submitted version in order
 
 assumptions:
  \begin{itemize}
-   \item The \gls{client} will
+   \item The \gls{client} will not have access to the ticketing interface
+   \item The boolean \gls{isPriority} will allow administrators the ability to prioritize tickets
  \end{itemize}
 
 Summary of changes:
 \begin{itemize}
-	\item One
-	\item two
+	\item From the first version that was submitted early this semester this document has gone from being a list of tables to a full blown document written in LaTex .
 \end{itemize}
 
-In making this document we intend to layout the master plan for a ticketing system using Microsoft's dot net core and the C\# language. This document is intended to be read by anyone intending to create this ticketing system or those intending to use it.
+In making this document we intend to layout the master plan for a ticketing system using Microsoft's dot net core and the C\# language. This document is intended to be read by anyone intending to create this ticketing system or those intending to use it. Understanding of the C\# language will be required in order to create this ticketing system as it was originally designed. The documentation contained at \href{https://docs.microsoft.com/en-us/dotnet/core/} may be particularly helpful in understanding the code and design of this application.
 \pagebreak
 
 % This describes the need for the system. It should briefly describe the system's functions and explain how it will work with other systems. It should also describe how the system fits into the overall business or strategic objectives of the organization commissioning the software.
@@ -144,7 +164,7 @@ The Golden Ticket is designed to be a lightweight web based ticketing system wri
 	\item Technicians will have access to the ticket queue and assigned tickets.
 	\item Admins will have access to the ticket queue, assigned tickets (if any) and the admin portal.
 	\item The ticket queue will consist of all tickets that are not marked as complete. The ticket at the top of the queue will be the ticket whose due date is closest to now / farthest past due. Their will be options to filter views on tickets, such as only tickets assigned to you, only tickets at x difficulty level, etc.
-	\item A \index{ticket} will consist of the following items:
+	\item A \index{ticket} ticket will consist of the following items:
 	      \begin{itemize}
 		      \item Title
 		      \item Description
@@ -156,7 +176,7 @@ The Golden Ticket is designed to be a lightweight web based ticketing system wri
 		      \item assigned technician
 		      \item due date/ time
 	      \end{itemize}
-	\item A \index{contact} will consist of the following items:
+	\item A \index{contact} contact will consist of the following items:
 	      \begin{itemize}
 		      \item Name
 		      \item Phone number
@@ -164,13 +184,13 @@ The Golden Ticket is designed to be a lightweight web based ticketing system wri
 		      \item Title
 		      \item Company/department name
 	      \end{itemize}
-	\item a \index{company} will consist of the following items:
+	\item a \index{company} company will consist of the following items:
 	      \begin{itemize}
 		      \item A list of contacts
 		      \item A list of associated tickets
 		      \item join date
 	      \end{itemize}
-  \item A \index{Technician} will consist of the following items:
+  \item A \index{Technician} technician will consist of the following items:
         \begin{itemize}
           \item Join date
           \item experience level
@@ -178,9 +198,10 @@ The Golden Ticket is designed to be a lightweight web based ticketing system wri
           \item phone
           \item list of assigned tickets
         \end{itemize}
-  \item An \index{administrator} will consist of the following items:
+  \item An \index{administrator} administrator will consist of the following items:
         \begin{itemize}
-          \item
+          \item All items contained within the technician 
+          \item An additional property that tags their account as an administrator
         \end{itemize}
 \end{enumerate}
 \pagebreak
@@ -267,6 +288,7 @@ The above figure describes the main processes and applications that will be used
   \centering
 \end{figure}
 
+\pagebreak
 
 \subsection{Non-functional Requirements}
 \begin{itemize}
@@ -280,8 +302,9 @@ The above figure describes the main processes and applications that will be used
 
 % This chapter includes graphical system models showing the relationships between the system components and the system and its environment. Examples of possible models are object models, data-flow models, or semantic data models.
 \section{System Models}
+The Below model gives a broad overview of the relationships of the different components of the software system and how they interconnect and work together to provide the necessary functions of the ticketing system.
 \begin{figure}[htbp]
-  \includegraphics[scale =.5, width = \textwidth, height = \textheight]{ComponentDiagram}
+  \includegraphics[scale =.33]{ComponentDiagram}
   \caption{Component Diagram}[The diagram describing the components and classes of the system]
   \centering
 \end{figure}
@@ -302,27 +325,30 @@ We assume that any and all tickets will be viewable to the pool of technicians, 
 % These provide detailed, specific information that is related to the application being developed—for example, hardware and database descriptions. Hardware requirements define the minimal and optimal configurations for the system. Database requirements define the logical organization of the data used by the system and the relationships between data.
 \section{Appendices}
 
-\subsection{Software Dependencies for host}
+\subsection{\index{Software Dependencies for host}Software Dependencies for host}
   \begin{itemize}
-    \item Dotnet Runtime 2.1
+    \item Dotnet Runtime 2.1.104
     \item Apache2 (latest)
     \item SQL-lite (latest)
     \item Any modern operating system that can run the above.
   \end{itemize}
 
-\subsection{Hardware Dependencies for host}
+  Apache2 will function as a reverse proxy, instead of exposing the application directly to the web. Apache2 will receive traffic on port (if port 80 it is automatically redirected to 443) 80 or 443 and then route that traffic to localhost:5000. 
+  The application itself builds and manages the SQL-lite databases using the \gls{MVC} and \gls{EF} builtin frameworks.
+
+\subsection{\index{Hardware Dependencies for host}Hardware Dependencies for host}
   \begin{itemize}
     \item A network connection
     \item A dual core+ CPU
     \item ~ 3GB of free-space on the main storage space.
   \end{itemize}
 
-  \subsection{\index{Software Dependencies for client}}
+  \subsection{\index{Software Dependencies for client}Software Dependencies for client}
     \begin{itemize}
       \item A modern web browser (edge / firefox / chrome)
     \end{itemize}
 
-    \subsection{\index{Hardware Dependencies for client}}
+    \subsection{\index{Hardware Dependencies for client}Hardware Dependencies for client}
       \begin{itemize}
         \item any device capable of running the above web browsers
       \end{itemize}
@@ -330,7 +356,6 @@ We assume that any and all tickets will be viewable to the pool of technicians, 
 \pagebreak
 
 % Several indexes to the document may be included. As well as a normal alphabetic index, there may be an index of diagrams, an index of functions, and so on.
-\section{Index}
 \printindex
 \listoffigures
 \pagebreak
