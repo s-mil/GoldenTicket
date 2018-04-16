@@ -239,7 +239,7 @@ namespace GoldenTicket.Data
 
             foreach (var client in context.Clients)
             {
-                var ticketCount = randGenerator.Next(0, 10);
+                var ticketCount = randGenerator.Next(0, 15);
                 for (var i = 0; i < ticketCount; i++)
                 {
                     context.Tickets.Add(new Ticket
