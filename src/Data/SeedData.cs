@@ -256,6 +256,8 @@ namespace GoldenTicket.Data
                 }
             }
 
+            context.SaveChanges();
+
             foreach (var ticket in context.Tickets)
             {
                 var workTimesCount = randGenerator.Next(0, 10);
@@ -267,7 +269,7 @@ namespace GoldenTicket.Data
                     {
                         Start = start,
                         End = end,
-                        TechnicianId = userManager.Users.OrderBy(t => new Guid()).Take(1).First().Id,
+                        TechnicianId = context.Users.OrderBy(t => Guid.NewGuid()).Take(1).First().UserName,
                         TicketId = ticket.Id
                     });
                 }

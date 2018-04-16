@@ -11,13 +11,12 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <title>@ViewData["Title"] - Golden Ticket</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <!-- Compiled and minified CSS -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"> @RenderSection("Style", required: false)
 
     </head>
 
-    <body>
-      <nav>
+    <body class="container">
+      <nav class="row">
           <div class="nav-wrapper">
            <ul class="right hide-on-med-and-down">
             @if (SignInManager.IsSignedIn(User)) {
@@ -43,16 +42,12 @@
           </ul>
         </div>
       </nav>
-    
-      <h1>@ViewData["Title"]</h1>
-      @RenderBody() @RenderSection("Scripts", required: false)
-
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous"></script>
-      <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>-->
-      <!-- Compiled and minified JavaScript -->
+      <main class="row">
+        <h1>@ViewData["Title"]</h1>
+        @RenderBody()
+      </main>
+      
+      @RenderSection("Scripts", required: false)
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" crossorigin=" anonymous "></script>
 </body>
 
