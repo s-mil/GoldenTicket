@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using GoldenTicket.Models;
 using GoldenTicket.Models.AccountViewModels;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -16,11 +17,11 @@ namespace GoldenTicket.Controllers
 
         private readonly ILogger _logger;
 
-    /// <summary>
-    /// Initializes the Account Controller
-    /// </summary>
-    /// <param name="signInManager">manages sign in and out</param>
-    /// <param name="logger">logs</param>
+        /// <summary>
+        /// Initializes the Account Controller
+        /// </summary>
+        /// <param name="signInManager">manages sign in and out</param>
+        /// <param name="logger">logs</param>
         public AccountController(SignInManager<Technician> signInManager, ILogger<AccountController> logger)
         {
             _signInManager = signInManager;
@@ -34,8 +35,20 @@ namespace GoldenTicket.Controllers
         [HttpGet]
         public async Task<IActionResult> Login()
         {
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             await _signInManager.SignOutAsync();
             return View();
+        }
+
+        /// <summary>
+        /// Logs the user out.
+        /// </summary>
+        /// <returns>Redirect to login</returns>
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(Login));
         }
 
         /// <summary>
