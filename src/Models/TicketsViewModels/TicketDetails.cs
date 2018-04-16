@@ -8,6 +8,6 @@ namespace GoldenTicket.Models.TicketsViewModels
 
         public Client Client { get; set; }
 
-        public IEnumerable<TechnicianTime> Times { get; set; }
+        public List<TechnicianTime> Times { get; set; }
     }
 }
