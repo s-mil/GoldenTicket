@@ -50,10 +50,10 @@ namespace GoldenTicket.Controllers
         }
 
         /// <summary>
-        /// Opens a new ticket
+        /// Opens a ticket
         /// </summary>
         /// <param name="id">unique id of ticket</param>
-        /// <returns>view of the new ticket</returns>
+        /// <returns>view of the ticket</returns>
         [HttpGet]
         public async Task<IActionResult> Open([FromRoute] Guid id)
         {
