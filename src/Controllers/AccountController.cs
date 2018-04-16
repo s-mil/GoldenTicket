@@ -60,6 +60,11 @@ namespace GoldenTicket.Controllers
         [HttpPost]
         public async Task<IActionResult> Login([FromForm] LoginRequest loginRequest, [FromQuery] string returnUrl = null)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(loginRequest);
+            }
+
             var result = await _signInManager.PasswordSignInAsync(loginRequest.Username, loginRequest.Password, loginRequest.RememberMe, false);
 
             if (result.Succeeded)
