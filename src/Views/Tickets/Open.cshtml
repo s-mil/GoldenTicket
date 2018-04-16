@@ -3,6 +3,7 @@
 }
 @using GoldenTicket.Models.TicketsViewModels
 @using System.Collections.Generic
+@using System.Linq
 @model TicketDetails
 
 @if (Model.Ticket.IsUrgent) {
@@ -28,7 +29,7 @@
     <a asp-controller="Clients" asp-action="Open" asp-route-id="@Model.Client.Id">More Info</a>
 </p>
 
-<h3>Technician Times</h3>
+<h3>Technician Times: @Model.Times.Sum(time => (time.Time.End - time.Time.Start).TotalHours).ToString("F2") Hours</h3>
 <table>
     <tr>
         <th>Technician</th>
