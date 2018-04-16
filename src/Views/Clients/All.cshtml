@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "All Clients";
+}
+@using GoldenTicket.Models.ClientsViewModels
+@using System.Collections.Generic
+@model IEnumerable<ClientDetails>
+
+<table>
+    <tr>
+        <th>
+            Company
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Number of Open Tickets
+        </th>
+    </tr>
+    @foreach (var client in Model) 
+    {
+    <tr>
+        <td>
+            @client.Client.Company
+        </td>
+        <td>
+            @client.Client.FirstName @client.Client.LastName
+        </td>
+        <td>
+            @client.Tickets.Count
+        </td>
+        <td>
+            <a asp-action="Open" asp-route-id="@client.Client.Id">Open</a>
+        </td>
+    </tr>
+    }
+</table>
