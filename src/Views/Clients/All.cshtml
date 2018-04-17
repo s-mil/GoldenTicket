@@ -13,12 +13,9 @@
     <div class="col s12 m6">
       <div class="card grey darken-1 stickey-action">
         <div class="card-content white-text activator">
-          <span class="card-title">@client.Client.Company</span>
-          <p>@client.Client.FirstName @client.Client.LastName</p><br>
-         <p>Number of Opne Tickets: @client.Tickets.Count</p> 
-        </div>
-        <div class="card-action">
-          <a asp-action="Open" asp-route-id="@client.Client.Id">Open</a>
+          <span class="card-title">@client.Client.FirstName @client.Client.LastName</span>
+          <p>@client.Client.Company</p><br>
+         <p>Open Tickets: @client.Tickets.Count</p> 
         </div>
       </div>
     </div>

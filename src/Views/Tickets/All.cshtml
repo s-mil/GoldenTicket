@@ -21,6 +21,7 @@
           <p>@ticket.Description</p><br>
           <p>@ticket.DateAdded</p><br>
           <p>This ticket is  @(ticket.Open ? "open." : "closed")</p><br>
+          <p>@ticket.DateAdded.ToString("d")</p><br>
         </div>
         <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">@ticket.Title<i class="material-icons right">close</i></span>

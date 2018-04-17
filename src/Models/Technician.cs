@@ -29,5 +29,14 @@ namespace GoldenTicket.Models
         /// The Date the technician was hired
         /// </summary>
         public DateTime DateAdded { get; set; }
+
+        /// <summary>
+        /// Gets pay rate for this technician
+        /// </summary>
+        /// <returns>Pay rate</returns>
+        public int GetPayRate()
+        {
+            return 30 + 10 * (int)((DateTime.Now - DateAdded).TotalDays / 365);
+        }
     }
 }
