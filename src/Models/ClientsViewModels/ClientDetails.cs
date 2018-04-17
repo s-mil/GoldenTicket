@@ -18,6 +18,11 @@ namespace GoldenTicket.Models.ClientsViewModels
         /// List of tickets associated with client
         /// </summary>
         /// <returns>client's ticket list</returns>
-        public List<Ticket> Tickets { get; set; }
+        public IEnumerable<Ticket> Tickets { get; set; }
+
+        /// <summary>
+        /// Count of open tickets.
+        /// </summary>
+        public int OpenTicketCount { get; set; }
     }
 }
