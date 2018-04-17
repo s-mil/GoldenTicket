@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace GoldenTicket.Data
 {
+    /// <summary>
+    /// Class used to populate ticket system
+    /// </summary>
     public static class SeedData
     {
         private static Technician[] _technicians = {
@@ -208,6 +211,11 @@ namespace GoldenTicket.Data
             }
         };
 
+        /// <summary>
+        /// Initializes the ticket system with data
+        /// </summary>
+        /// <param name="context">context</param>
+        /// <param name="userManager">admin</param>
         public static void Initialize(GoldenTicketContext context, UserManager<Technician> userManager)
         {
             foreach (var technician in userManager.Users)
