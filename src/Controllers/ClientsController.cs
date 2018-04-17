@@ -38,6 +38,37 @@ namespace GoldenTicket.Controllers
             return View(clients);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Open([FromRoute] Guid id)
+        {
+            var client = await _context.Clients.FindAsync(id);
+            return View(client);
+        }
+
+        /// <summary>
+        /// Gets the add client view
+        /// </summary>
+        /// <returns>The add client view.</returns>
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Adds a client to the database
+        /// </summary>
+        /// <param name="client">The client to add</param>
+        /// <returns>The added client</returns>
+        [HttpPost]
+        public async Task<IActionResult> Add([FromForm] Client client)
+        {
+            _context.Clients.Add(client);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Open), new { id = client.Id });
+        }
+
         /// <summary>
         /// Gets view for adding a ticket.
         /// </summary>
