@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@ViewData["Title"] - Golden Ticket</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" media="screen,projection"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
     @RenderSection("Style", required: false)
 </head>
@@ -19,7 +19,7 @@
 <body class="container">
     <nav class="row">
         <div class="nav-wrapper purple darken-4">
-            <a><strong class="amber-text text-darken-2"> The Golden Ticket</strong> </a>
+            <a class="brand-logo center"><strong class="amber-text text-darken-2"> The Golden Ticket</strong> </a>
             <ul class="right hide-on-med-and-down amber-text text-darken-2">
             @if (SignInManager.IsSignedIn(User)) {
                 <li class="nav-item amber-text text-darken-2" >
