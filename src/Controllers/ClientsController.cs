@@ -33,7 +33,7 @@ namespace GoldenTicket.Controllers
         [HttpGet]
         public async Task<IActionResult> All()
         {
-            var clients = await _context.Clients.GroupJoin(_context.Tickets.Where(ticket => ticket.Open), client => client.Id, ticket => ticket.ClientId, (client, tickets) => new ClientDetails { Client = client, Tickets = tickets.ToList() }).ToListAsync();
+            var clients = await _context.Clients.GroupJoin(_context.Tickets.Where(ticket => ticket.Open), client => client.Id, ticket => ticket.ClientId, (client, tickets) => new ClientDetails { Client = client, Tickets = tickets.ToList() }).OrderByDescending(details => details.Tickets.Count).ToListAsync();
             return View(clients);
         }
     }
