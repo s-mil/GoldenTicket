@@ -81,6 +81,22 @@ namespace GoldenTicket.Controllers
             return View(ticket);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Edit([FromForm] Ticket ticketUpdate)
+        {
+            var ticket = await _context.Tickets.FindAsync(ticketUpdate.Id);
+            
+            ticket.Title = ticketUpdate.Title;
+            ticket.Description = ticketUpdate.Description;
+            ticket.Complexity = ticketUpdate.Complexity;
+            ticket.Notes = ticketUpdate.Notes;
+            ticket.Open = ticketUpdate.Open;
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Open), new { id = ticket.Id });
+        }
+
         /// <summary>
         /// Open the page for adding time to a ticket.
         /// </summary>
