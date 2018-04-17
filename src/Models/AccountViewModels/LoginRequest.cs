@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace GoldenTicket.Models.AccountViewModels
 {
     /// <summary>
-    /// Login information request
+    /// Login information request model
     /// </summary>
     public class LoginRequest
     {
