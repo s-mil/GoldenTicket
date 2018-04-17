@@ -81,11 +81,16 @@ namespace GoldenTicket.Controllers
             return View(ticket);
         }
 
+        /// <summary>
+        /// Updates a ticket.
+        /// </summary>
+        /// <param name="ticketUpdate">The ticket update.</param>
+        /// <returns>The ticket view</returns>
         [HttpPost]
         public async Task<IActionResult> Edit([FromForm] Ticket ticketUpdate)
         {
             var ticket = await _context.Tickets.FindAsync(ticketUpdate.Id);
-            
+
             ticket.Title = ticketUpdate.Title;
             ticket.Description = ticketUpdate.Description;
             ticket.Complexity = ticketUpdate.Complexity;
