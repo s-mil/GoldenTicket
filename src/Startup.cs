@@ -104,7 +104,7 @@ namespace GoldenTicket
             {
                 SeedData.Initialize(context, userManager);
             }
-            userManager.CreateAsync(new Technician { UserName = "admin" }, _configuration["adminPassword"]).Wait();
+            userManager.CreateAsync(new Technician { UserName = "admin", FirstName = "admin", LastName = "admin" }, _configuration["adminPassword"]).Wait();
         }
     }
 }
