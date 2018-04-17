@@ -14,9 +14,10 @@
    
  <div class="row">
     <div class="col s12 m6">
-      <div class="card stickey-action @(ticket.IsUrgent ? "red" : "grey darken-1") ">
+      <div class="card stickey-action grey darken-1">
         <div class="card-content white-text activator">
           <span class="card-title">@ticket.Title</span>
+          <i class="medium material-icons">@(ticket.IsUrgent ? "error":"")</i>
           <p>@ticket.Description</p><br>
           <p>@ticket.DateAdded</p><br>
           <p>IN PROGRESS?: @ticket.Open</p><br>
