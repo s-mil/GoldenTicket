@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -51,7 +51,7 @@ namespace GoldenTicket
                 {
                     SeedData.Initialize(context, userManager);
                 }
-                userManager.CreateAsync(new Technician { UserName = "admin", FirstName = "admin", LastName = "admin" }, configuration["adminPassword"]).Wait();
+                userManager.CreateAsync(new Technician { UserName = "admin", FirstName = "admin", LastName = "admin", DateAdded = DateTime.Now.AddYears(-2) }, configuration["adminPassword"]).Wait();
             }
 
             host.Run();
