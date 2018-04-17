@@ -45,7 +45,7 @@ namespace GoldenTicket
             {
                 if (!_hostingEnvironment.IsDevelopment())
                 {
-                    options.Filters.Add(new RequireHttpsAttribute());
+                    //options.Filters.Add(new RequireHttpsAttribute());
                 }
             });
 
