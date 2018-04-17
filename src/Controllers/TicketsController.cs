@@ -5,6 +5,7 @@ using GoldenTicket.Data;
 using GoldenTicket.Models;
 using GoldenTicket.Models.TicketsViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,13 +18,18 @@ namespace GoldenTicket.Controllers
     public class TicketsController : Controller
     {
         private GoldenTicketContext _context;
+
+        private UserManager<Technician> _userManager;
+
         /// <summary>
         /// Initializes private variable _context
         /// </summary>
         /// <param name="context">context of current ticket</param>
-        public TicketsController(GoldenTicketContext context)
+        /// <param name="userManager">The user manager</param>
+        public TicketsController(GoldenTicketContext context, UserManager<Technician> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -73,6 +79,32 @@ namespace GoldenTicket.Controllers
         {
             var ticket = await _context.Tickets.FindAsync(id);
             return View(ticket);
+        }
+
+        /// <summary>
+        /// Open 
+        /// </summary>
+        /// <param name="id">The id of the ticket.</param>
+        /// <returns>The add time view</returns>
+        [HttpGet]
+        public async Task<IActionResult> AddTime([FromRoute] Guid id)
+        {
+            var ticket = await _context.Tickets.FindAsync(id);
+            return View(new TicketTime { TicketTitle = ticket.Title, TicketId = ticket.Id });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddTime([FromForm] TicketTime time)
+        {
+            _context.TechnicianTicketTimes.Add(new TechnicianTicketTime
+            {
+                End = time.End,
+                Start = time.Start,
+                TicketId = time.TicketId,
+                TechnicianId = _userManager.GetUserName(User)
+            });
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Open), new { id = time.TicketId });
         }
     }
 }
