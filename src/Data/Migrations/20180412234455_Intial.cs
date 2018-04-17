@@ -4,8 +4,15 @@ using System.Collections.Generic;
 
 namespace GoldenTicket.Data.Migrations
 {
+    /// <summary>
+    /// Initialization class
+    /// </summary>
     public partial class Intial : Migration
     {
+        /// <summary>
+        /// Table builder
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -247,6 +254,10 @@ namespace GoldenTicket.Data.Migrations
                 unique: true);
         }
 
+        /// <summary>
+        /// Creates droptable
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
