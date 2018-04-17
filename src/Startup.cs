@@ -73,9 +73,6 @@ namespace GoldenTicket
         /// <param name="userManager"></param>
         public void Configure(IApplicationBuilder app, GoldenTicketContext context, ILogger<Startup> logger, IApplicationLifetime applicationLifetime, UserManager<Technician> userManager)
         {
-            ConfigureContext(context, userManager);
-            logger.LogInformation("Database created and migrated to newest version.");
-
             if (_hostingEnvironment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -96,16 +93,6 @@ namespace GoldenTicket
                     name: "default",
                     template: "{controller=Tickets}/{action=All}/{id?}");
             });
-        }
-
-        private void ConfigureContext(GoldenTicketContext context, UserManager<Technician> userManager)
-        {
-            context.Database.Migrate();
-            if (_configuration.GetValue<bool>("useSeedData"))
-            {
-                SeedData.Initialize(context, userManager);
-            }
-            userManager.CreateAsync(new Technician { UserName = "admin", FirstName = "admin", LastName = "admin" }, _configuration["adminPassword"]).Wait();
         }
     }
 }
