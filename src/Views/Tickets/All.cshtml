@@ -19,7 +19,6 @@
           <span class="card-title">@ticket.Title</span>
           <i class="medium material-icons">@(ticket.IsUrgent ? "error":"")</i>
           <p>@ticket.Description</p><br>
-          <p>@ticket.DateAdded</p><br>
           <p>This ticket is  @(ticket.Open ? "open." : "closed")</p><br>
           <p>@ticket.DateAdded.ToString("d")</p><br>
         </div>
