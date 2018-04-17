@@ -43,11 +43,16 @@ namespace GoldenTicket.Controllers
         /// </summary>
         /// <returns>The view.</returns>
         [HttpGet]
-        public async Task<IActionResult> AddTicket([FromRoute] Guid id)
+        public IActionResult AddTicket([FromRoute] Guid id)
         {
             return View(new Ticket { ClientId = id });
         }
 
+        /// <summary>
+        /// Adds a ticket
+        /// </summary>
+        /// <param name="ticket">The ticket to be added</param>
+        /// <returns>The added ticket</returns>
         [HttpPost]
         public async Task<IActionResult> AddTicket([FromForm] Ticket ticket)
         {
