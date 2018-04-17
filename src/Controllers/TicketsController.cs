@@ -82,7 +82,7 @@ namespace GoldenTicket.Controllers
         }
 
         /// <summary>
-        /// Open 
+        /// Open the page for adding time to a ticket.
         /// </summary>
         /// <param name="id">The id of the ticket.</param>
         /// <returns>The add time view</returns>
@@ -93,6 +93,11 @@ namespace GoldenTicket.Controllers
             return View(new TicketTime { TicketTitle = ticket.Title, TicketId = ticket.Id });
         }
 
+        /// <summary>
+        /// Add time to a ticket
+        /// </summary>
+        /// <param name="time">The time to add</param>
+        /// <returns>Redirect to ticket view</returns>
         [HttpPost]
         public async Task<IActionResult> AddTime([FromForm] TicketTime time)
         {

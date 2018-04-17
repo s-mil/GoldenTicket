@@ -70,6 +70,7 @@ namespace GoldenTicket
         /// <param name="context"></param>
         /// <param name="logger"></param>
         /// <param name="applicationLifetime"></param>
+        /// <param name="userManager"></param>
         public void Configure(IApplicationBuilder app, GoldenTicketContext context, ILogger<Startup> logger, IApplicationLifetime applicationLifetime, UserManager<Technician> userManager)
         {
             ConfigureContext(context, userManager);
