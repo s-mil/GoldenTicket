@@ -18,9 +18,8 @@
         <div class="card-content white-text activator">
           <span class="card-title">@ticket.Title</span>
           <p>@ticket.Description</p><br>
-          <p>@ticket.DateAdded</p><br>
-          <p>IN PROGRESS?: @ticket.Open</p><br>
-          <p>Is Urgernt?: @ticket.IsUrgent</p> 
+          <p>@ticket.DateAdded.ToString("d")</p><br>
+          <p>Status: @(ticket.Open ? "Open" : "Closed")</p><br>
         </div>
         <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">@ticket.Title<i class="material-icons right">close</i></span>
