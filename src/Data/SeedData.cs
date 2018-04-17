@@ -1,5 +1,6 @@
 using GoldenTicket.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 
@@ -12,77 +13,77 @@ namespace GoldenTicket.Data
     {
         private static Technician[] _technicians = {
             new Technician {
-                FirstName = "Madeline", 
+                FirstName = "Madeline",
                 LastName = "Booth",
                 IsAdmin = true
             },
             new Technician {
-                FirstName = "Charles", 
+                FirstName = "Charles",
                 LastName = "Woods",
                 IsAdmin = true
             },
             new Technician {
-                FirstName = "Nico", 
+                FirstName = "Nico",
                 LastName = "Perkins",
                 IsAdmin = true
             },
             new Technician {
-                FirstName = "Marie", 
+                FirstName = "Marie",
                 LastName = "Wilson",
                 IsAdmin = false
             },
             new Technician {
-                FirstName = "Nancy", 
+                FirstName = "Nancy",
                 LastName = "Mays",
                 IsAdmin = false
             },
             new Technician {
-                FirstName = "Taryn", 
+                FirstName = "Taryn",
                 LastName = "Norman",
                 IsAdmin = false
             },
             new Technician {
-                FirstName = "Kieran", 
+                FirstName = "Kieran",
                 LastName = "Lam",
                 IsAdmin = false
             },
             new Technician {
-                FirstName = "Natalya", 
+                FirstName = "Natalya",
                 LastName = "Lynch",
                 IsAdmin = false
             },
             new Technician {
-                FirstName = "Gavin", 
+                FirstName = "Gavin",
                 LastName = "Preston",
                 IsAdmin = false
             },
             new Technician {
-                FirstName = "Kira", 
+                FirstName = "Kira",
                 LastName = "Paul",
                 IsAdmin = false
             },
             new Technician {
-                FirstName = "Shyla", 
+                FirstName = "Shyla",
                 LastName = "Turner",
                 IsAdmin = false
             },
             new Technician {
-                FirstName = "Ana", 
+                FirstName = "Ana",
                 LastName = "Wise",
                 IsAdmin = false
             },
             new Technician {
-                FirstName = "Rylan", 
+                FirstName = "Rylan",
                 LastName = "Bryan",
                 IsAdmin = false
             },
             new Technician {
-                FirstName = "Cailyn", 
+                FirstName = "Cailyn",
                 LastName = "Melton",
                 IsAdmin = false
             },
             new Technician {
-                FirstName = "Rory", 
+                FirstName = "Rory",
                 LastName = "Clark",
                 IsAdmin = false
             }
@@ -216,16 +217,11 @@ namespace GoldenTicket.Data
         /// </summary>
         /// <param name="context">context</param>
         /// <param name="userManager">admin</param>
-        public static void Initialize(GoldenTicketContext context, UserManager<Technician> userManager)
+        /// <param name="roleManager"></param>
+        public static void Initialize(GoldenTicketContext context, UserManager<Technician> userManager, RoleManager<IdentityRole> roleManager)
         {
-            foreach (var technician in userManager.Users)
-            {
-                userManager.DeleteAsync(technician).Wait();
-            }
-            context.Tickets.RemoveRange(context.Tickets);
-            context.Clients.RemoveRange(context.Clients);
-            context.TechnicianTicketTimes.RemoveRange(context.TechnicianTicketTimes);
-            context.SaveChanges();
+            context.Database.EnsureDeleted();
+            context.Database.Migrate();
 
             var randGenerator = new Random();
 
@@ -234,13 +230,23 @@ namespace GoldenTicket.Data
                 client.DateAdded = DateTime.Now.AddMonths(randGenerator.Next(-24, -12));
             }
 
+            var role = roleManager.FindByNameAsync(DataConstants.AdministratorRole).Result;
+            if (role == null)
+            {
+                roleManager.CreateAsync(new IdentityRole(DataConstants.AdministratorRole));
+            }
+
             foreach (var technician in _technicians)
             {
                 technician.DateAdded = DateTime.Now.AddMonths(randGenerator.Next(-36, -25));
                 technician.UserName = $"{technician.FirstName}.{technician.LastName}";
                 userManager.CreateAsync(technician, "password").Wait();
+                if (technician.IsAdmin)
+                {
+                    userManager.AddToRoleAsync(technician, DataConstants.AdministratorRole);
+                }
             }
-            
+
             context.Clients.AddRange(_clients);
 
             context.SaveChanges();
