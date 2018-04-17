@@ -28,14 +28,16 @@
     <a asp-controller="Clients" asp-action="Open" asp-route-id="@Model.Client.Id">More Info</a>
 </p>
 
-<h3>Technician Times: @(TimeSpan.FromHours(Model.Times.Sum(time => (time.Time.End - time.Time.Start).TotalHours)).ToString("h\\:mm"))</h3>
+<a asp-action="Bill" asp-route-id="@Model.Ticket.Id">Generate Bill</a>
+
+<h3>Technician Time: @(TimeSpan.FromHours(Model.Times.Sum(time => (time.Time.End - time.Time.Start).TotalHours)).ToString("h\\:mm"))</h3>
 <a asp-action="AddTime" asp-route-id="@Model.Ticket.Id">Add Time</a>
 <table>
     <tr>
         <th>Technician</th>
         <th>Start</th>
         <th>End</th>
-        <th>Total Time</th>
+        <th>Time</th>
     </tr>
     @foreach (var time in Model.Times) {
     <tr>

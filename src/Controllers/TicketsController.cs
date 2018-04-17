@@ -132,5 +132,14 @@ namespace GoldenTicket.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Open), new { id = time.TicketId });
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Bill([FromRoute] Guid id)
+        {
+            var ticket = await _context.Tickets.FindAsync(id);
+            var client = await _context.Clients.FindAsync(ticket.ClientId);
+            var times = await _context.TechnicianTicketTimes.Where(time => time.TicketId == ticket.Id).Join(_context.Users, time => time.TechnicianId, tech => tech.UserName, (time, tech) => new TechnicianTime { Technician = tech, Time = time }).ToListAsync();
+            return View(new TicketDetails { Ticket = ticket, Client = client, Times = times });
+        }
     }
 }
