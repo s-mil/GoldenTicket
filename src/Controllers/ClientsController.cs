@@ -38,6 +38,11 @@ namespace GoldenTicket.Controllers
             return View(clients);
         }
 
+        /// <summary>
+        /// Opens a client's details
+        /// </summary>
+        /// <param name="id">The id of the client</param>
+        /// <returns>The client</returns>
         [HttpGet]
         public async Task<IActionResult> Open([FromRoute] Guid id)
         {
