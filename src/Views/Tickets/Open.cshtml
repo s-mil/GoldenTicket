@@ -8,7 +8,7 @@
 @if (Model.Ticket.IsUrgent) {
     <h3 style="background-color: red">URGENT</h3>
 }
-
+<div class="container">
 <h3>Ticket Details</h3>
 <p>
     Complexity: @Model.Ticket.Complexity <br>
@@ -47,3 +47,4 @@
     </tr>
     }
 </table>
+</div>
