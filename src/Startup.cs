@@ -80,8 +80,8 @@ namespace GoldenTicket
             }
             else
             {
-                var options = new RewriteOptions().AddRedirectToHttps();
-                app.UseRewriter(options);
+               // var options = new RewriteOptions().AddRedirectToHttps();
+               // app.UseRewriter(options);
                 app.UseForwardedHeaders(new ForwardedHeadersOptions
                 {
                     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
