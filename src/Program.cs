@@ -31,27 +31,41 @@ namespace GoldenTicket
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
+
                 var context = services.GetRequiredService<GoldenTicketContext>();
+                var configuration = services.GetRequiredService<IConfiguration>();
                 var userManager = services.GetRequiredService<UserManager<Technician>>();
-                context.Database.Migrate();
+                var roleManager = services.GetService<RoleManager<IdentityRole>>();
 
-                try
-                {
-                    SeedData.Initialize(context, userManager);
-                }
-                catch (Exception ex)
-                {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred while seeding the database.");
-                    throw ex;
-                }
-
-                var configuration = host.Services.GetRequiredService<IConfiguration>();
                 if (configuration.GetValue<bool>("useSeedData"))
                 {
-                    SeedData.Initialize(context, userManager);
+                    SeedData.Initialize(context, userManager, roleManager);
                 }
-                userManager.CreateAsync(new Technician { UserName = "admin", FirstName = "admin", LastName = "admin", DateAdded = DateTime.Now.AddYears(-2) }, configuration["adminPassword"]).Wait();
+                else
+                {
+                    context.Database.Migrate();
+                    var role = roleManager.FindByNameAsync(DataConstants.AdministratorRole).Result;
+                    if (role == null)
+                    {
+                        roleManager.CreateAsync(new IdentityRole(DataConstants.AdministratorRole));
+                    }
+                }
+                var admin = userManager.FindByNameAsync(DataConstants.RootUsername).Result;
+                if (admin == null)
+                {
+                    admin = new Technician
+                    {
+                        UserName = DataConstants.RootUsername,
+                        FirstName = DataConstants.RootUsername,
+                        LastName = DataConstants.RootUsername,
+                        DateAdded = DateTime.Now.AddYears(-2)
+                    };
+                    userManager.CreateAsync(admin, configuration["adminPassword"]).Wait();
+                }
+                if (!userManager.IsInRoleAsync(admin, DataConstants.AdministratorRole).Result)
+                {
+                    userManager.AddToRoleAsync(admin, DataConstants.AdministratorRole).Wait();
+                }
             }
 
             host.Run();
