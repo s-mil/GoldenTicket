@@ -14,6 +14,10 @@ namespace GoldenTicket.Data.Migrations
     [Migration("20180412234455_Intial")]
     partial class Intial
     {
+        /// <summary>
+        /// Builds target model 
+        /// </summary>
+        /// <param name="modelBuilder">builder</param>
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

@@ -12,7 +12,7 @@ namespace GoldenTicket.Data.Migrations
         /// <summary>
         /// Table builder
         /// </summary>
-        /// <param name="migrationBuilder"></param>
+        /// <param name="migrationBuilder"> builder</param>
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -257,7 +257,7 @@ namespace GoldenTicket.Data.Migrations
         /// <summary>
         /// Creates droptable
         /// </summary>
-        /// <param name="migrationBuilder"></param>
+        /// <param name="migrationBuilder">builder</param>
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
