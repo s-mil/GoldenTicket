@@ -41,14 +41,6 @@ namespace GoldenTicket
         {
             services.AddMvc();
 
-            services.Configure<MvcOptions>(options =>
-            {
-                if (!_hostingEnvironment.IsDevelopment())
-                {
-                    //options.Filters.Add(new RequireHttpsAttribute());
-                }
-            });
-
             services.AddDbContext<GoldenTicketContext>(options => options.UseSqlite(_configuration["connectionString"]));
 
             services.AddIdentity<Technician, IdentityRole>().AddEntityFrameworkStores<GoldenTicketContext>().AddDefaultTokenProviders();
@@ -80,8 +72,6 @@ namespace GoldenTicket
             }
             else
             {
-               // var options = new RewriteOptions().AddRedirectToHttps();
-               // app.UseRewriter(options);
                 app.UseForwardedHeaders(new ForwardedHeadersOptions
                 {
                     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
