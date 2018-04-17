@@ -1,11 +1,10 @@
 @using GoldenTicket.Models.AccountViewModels 
-@model LoginRequest 
+@model LoginRequest
 @{ 
 	ViewData["Title"] = "Login";
 }
 
 <form method="post">
-	
 		<input asp-for="Username" placeholder="Username">
 	
 		<input asp-for="Password" placeholder="Password">
@@ -18,5 +17,4 @@
 		<button class="btn" type="submit">
 			Login
 		</button>
-	
 </form>
