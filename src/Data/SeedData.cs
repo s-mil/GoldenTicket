@@ -6,7 +6,7 @@ using System.Linq;
 namespace GoldenTicket.Data
 {
     /// <summary>
-    /// Class used to populate ticket system
+    /// Utility for seeding a GoldenTicket Context
     /// </summary>
     public static class SeedData
     {
