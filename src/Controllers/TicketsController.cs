@@ -133,6 +133,11 @@ namespace GoldenTicket.Controllers
             return RedirectToAction(nameof(Open), new { id = time.TicketId });
         }
 
+        /// <summary>
+        /// Gets bill.
+        /// </summary>
+        /// <param name="id">The id for the ticket</param>
+        /// <returns>The bill</returns>
         [HttpGet]
         public async Task<IActionResult> Bill([FromRoute] Guid id)
         {
