@@ -28,7 +28,7 @@
     <a asp-controller="Clients" asp-action="Open" asp-route-id="@Model.Client.Id">More Info</a>
 </p>
 
-<h3>Technician Times: @Model.Times.Sum(time => (time.Time.End - time.Time.Start).TotalHours).ToString("F2") Hours</h3>
+<h3>Technician Times: @(TimeSpan.FromHours(Model.Times.Sum(time => (time.Time.End - time.Time.Start).TotalHours)).ToString("h\\:mm"))</h3>
 <a asp-action="AddTime" asp-route-id="@Model.Ticket.Id">Add Time</a>
 <table>
     <tr>
@@ -42,7 +42,7 @@
         <th>@time.Technician.FirstName @time.Technician.LastName</th>
         <th>@time.Time.Start</th>
         <th>@time.Time.End</th>
-        <th>@((time.Time.End - time.Time.Start).TotalHours.ToString("F2"))</th>
+        <th>@((time.Time.End - time.Time.Start).ToString("h\\:mm"))</th>
     </tr>
     }
 </table>
