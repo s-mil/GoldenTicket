@@ -17,10 +17,10 @@
 </head>
 
 <body>
-    <nav class="row">
-        <div class="nav-wrapper purple darken-4">
-            <a class="brand-logo center"><strong class="amber-text text-darken-2"> The Golden Ticket</strong> </a>
-            <ul class="right hide-on-med-and-down amber-text text-darken-2">
+    <nav class="purple darken-4">
+        <div class="nav-wrapper purple darken-4 container">
+            <a class="brand-logo hide-on-med-and-down"><strong class="amber-text text-darken-2"> The Golden Ticket</strong> </a>
+            <ul class="right amber-text text-darken-2">
             @if (SignInManager.IsSignedIn(User)) {
                 <li class="nav-item amber-text text-darken-2" >
                     Hello @UserManager.GetUserName(User)!
