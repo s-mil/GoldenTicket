@@ -28,6 +28,7 @@ namespace GoldenTicket.Models
         /// <summary>
         /// The description for this ticket
         /// </summary>
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
         /// <summary>
@@ -43,6 +44,7 @@ namespace GoldenTicket.Models
         /// <summary>
         /// Notes for this ticket
         /// </summary>
+        [DataType(DataType.MultilineText)]
         public string Notes { get; set; }
 
         /// <summary>
