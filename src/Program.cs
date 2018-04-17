@@ -64,6 +64,7 @@ namespace GoldenTicket
         /// <returns>errors</returns>
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseUrls("http://*.goldenticket.biz:80")
                 .UseStartup<Startup>()
                 .Build();
     }
