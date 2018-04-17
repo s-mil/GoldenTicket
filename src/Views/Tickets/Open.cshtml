@@ -2,7 +2,6 @@
     ViewData["Title"] = Model.Ticket.Title;
 }
 @using GoldenTicket.Models.TicketsViewModels
-@using System.Collections.Generic
 @using System.Linq
 @model TicketDetails
 
@@ -30,6 +29,7 @@
 </p>
 
 <h3>Technician Times: @Model.Times.Sum(time => (time.Time.End - time.Time.Start).TotalHours).ToString("F2") Hours</h3>
+<a asp-action="AddTime" asp-route-id="@Model.Ticket.Id">Add Time</a>
 <table>
     <tr>
         <th>Technician</th>
