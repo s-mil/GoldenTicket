@@ -35,12 +35,14 @@
         <th>Technician</th>
         <th>Start</th>
         <th>End</th>
+        <th>Hours</th>
     </tr>
     @foreach (var time in Model.Times) {
     <tr>
         <th>@time.Technician.FirstName @time.Technician.LastName</th>
         <th>@time.Time.Start</th>
         <th>@time.Time.End</th>
+        <th>@((time.Time.End - time.Time.Start).TotalHours.ToString("F2"))</th>
     </tr>
     }
 </table>
