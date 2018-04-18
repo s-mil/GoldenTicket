@@ -98,6 +98,18 @@ namespace GoldenTicket.Controllers
             ticket.Notes = ticketUpdate.Notes;
             ticket.Open = ticketUpdate.Open;
 
+            // Ticket is closing
+            if (!ticket.Open && ticket.DateClosed == DateTime.MinValue)
+            {
+                ticket.DateClosed = DateTime.Now;
+            }
+
+            // Ticket is re-opening
+            if (ticket.Open && ticket.DateClosed != DateTime.MinValue)
+            {
+                ticket.DateClosed = DateTime.MinValue;
+            }
+
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Open), new { id = ticket.Id });

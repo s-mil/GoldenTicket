@@ -53,6 +53,11 @@ namespace GoldenTicket.Models
         public DateTime DateAdded { get; set; }
 
         /// <summary>
+        /// The date closed
+        /// </summary>
+        public DateTime DateClosed { get; set; }
+
+        /// <summary>
         /// True if the ticket is open
         /// </summary>
         public bool Open { get; set; }

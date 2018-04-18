@@ -10,10 +10,18 @@ using System;
 
 namespace GoldenTicket.Data.Migrations
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [DbContext(typeof(GoldenTicketContext))]
-    partial class GoldenTicketContextModelSnapshot : ModelSnapshot
+    [Migration("20180418041154_Ticet Date Closed")]
+    partial class TicetDateClosed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
