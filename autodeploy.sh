@@ -6,7 +6,7 @@
   else
     dotnet publish
 
-    sudo cp -rf /home/gold/GoldenTicket/src/bin/Debug/.../publish/* /usr/local/GoldenTicket/
+    sudo cp -rf /home/gold/GoldenTicketi/src/bin/Debug/netcoreapp2.0/publish/* /var/aspnetcore/GoldenTicket/
 
     sudo systemctl restart kestrel-golden-ticket
 fi
