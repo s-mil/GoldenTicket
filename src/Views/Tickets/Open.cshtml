@@ -7,7 +7,7 @@
 @model TicketDetails
 
 @if (Model.Ticket.IsUrgent) {
-    <h3 style="background-color: red">URGENT</h3>
+    <h3 class="center red">URGENT</h3>
 }
 
 <h3>Ticket Details</h3>
@@ -45,6 +45,9 @@
         <th>Start</th>
         <th>End</th>
         <th>Time</th>
+        @if (User.IsInRole(DataConstants.AdministratorRole)) {
+        <th></th>
+        }
     </tr>
     @foreach (var time in Model.Times) {
     <tr>
