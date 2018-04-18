@@ -24,6 +24,7 @@ namespace GoldenTicket.Controllers
         /// intializes _context
         /// </summary>
         /// <param name="context">context of the technician</param>
+        /// <param name="userManager">the usermanager</param>
         public TechniciansController(GoldenTicketContext context, UserManager<Technician> userManager)
         {
             _context = context;
