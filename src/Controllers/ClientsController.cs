@@ -68,6 +68,7 @@ namespace GoldenTicket.Controllers
         [HttpPost]
         public async Task<IActionResult> Add([FromForm] Client client)
         {
+            client.DateAdded = DateTime.Now;
             _context.Clients.Add(client);
             await _context.SaveChangesAsync();
 

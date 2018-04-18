@@ -28,11 +28,13 @@ namespace GoldenTicket.Models
         /// <summary>
         /// The phone number of the client
         /// </summary>
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
         /// <summary>
         /// The email address of the client
         /// </summary>
+        [DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }
 
         /// <summary>

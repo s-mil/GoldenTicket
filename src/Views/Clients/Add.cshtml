@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Add a Client";
+}
+@using GoldenTicket.Models
+@model Client
+
+<form method="post">
+    <label>First Name</label>
+    <input asp-for="FirstName">
+    <label>Last Name</label>
+    <input asp-for="LastName">
+    <label>Phone Number</label>
+    <input asp-for="PhoneNumber">
+    <label>Email Address</label>
+    <input asp-for="EmailAddress">
+    <label>Company</label>
+    <input asp-for="Company">
+    <label>Address</label>
+    <input asp-for="Address">
+    <input class="btn" type="submit" value="Save">
+</form>
