@@ -1,5 +1,6 @@
 @using Microsoft.AspNetCore.Identity 
-@using GoldenTicket.Models 
+@using GoldenTicket.Models
+@using GoldenTicket.Data
 @inject SignInManager<Technician> SignInManager 
 @inject UserManager<Technician> UserManager
 
@@ -41,6 +42,11 @@
                 <li>
                     <a asp-controller="Clients" asp-action="All">Clients</a>
                 </li>
+                @if (User.IsInRole(DataConstants.AdministratorRole)) {
+                <li>
+                    <a asp-controller="Technicians" asp-action="All">Technicians</a>
+                </li>
+                }
             </ul>
         </div>
     </nav>
