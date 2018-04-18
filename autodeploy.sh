@@ -1,8 +1,8 @@
 #!/bin/bash
 # Pull the repo and act on the boolean value created by grep
- if git pull | grep -Fxq 'Already up to date'
+ if git pull | grep -Fxq 'Already up-to-date.'
   then
-      echo "Already up to date"
+      echo "Already up-to-date."
   else
     dotnet publish /home/gold/GoldenTicket/src
 
