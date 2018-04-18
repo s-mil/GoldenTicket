@@ -162,5 +162,19 @@ namespace GoldenTicket.Controllers
             var times = await _context.TechnicianTicketTimes.Where(time => time.TicketId == ticket.Id).Join(_context.Users, time => time.TechnicianId, tech => tech.UserName, (time, tech) => new TechnicianTime { Technician = tech, Time = time }).ToListAsync();
             return View(new TicketDetails { Ticket = ticket, Client = client, Times = times });
         }
+
+        /// <summary>
+        /// Toggles urgency of a ticket
+        /// </summary>
+        /// <param name="id">The id of the ticket</param>
+        /// <returns>The ticket</returns>
+        [HttpPost]
+        public async Task<IActionResult> ToggleUrgent([FromRoute] Guid id)
+        {
+            var ticket = await _context.Tickets.FindAsync(id);
+            ticket.IsUrgent = !ticket.IsUrgent;
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Open), new { id = id });
+        }
     }
 }

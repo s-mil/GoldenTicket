@@ -20,6 +20,12 @@
     <a asp-action="Edit" asp-route-id="@Model.Ticket.Id">Edit</a>
 </p>
 
+@if (User.IsInRole(DataConstants.AdministratorRole)) {
+<form asp-action="ToggleUrgent" asp-route-id="@Model.Ticket.Id" method="post">
+    <input type="submit" value="Toggle Urgent">
+</form>
+}
+
 <h3>Client Details</h3>
 <p>
     Name: @Model.Client.FirstName @Model.Client.LastName <br>
