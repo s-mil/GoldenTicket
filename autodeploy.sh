@@ -1,13 +1,11 @@
 #!/bin/bash
 
-timestamp=$(date +%s)
-
 
 # Pull the repo and act on the boolean value created by grep
 git -C /home/gold/GoldenTicket fetch
 if git -C /home/gold/GoldenTicket pull | grep -Fxq 'Already up-to-date.'
   then
-      echo timestamp+"Already up-to-date."
+      date +"[%Y %b %d %T] Already up-to-date."
   else
     dotnet publish /home/gold/GoldenTicket/src &&
 
@@ -15,6 +13,6 @@ if git -C /home/gold/GoldenTicket pull | grep -Fxq 'Already up-to-date.'
 
     sudo systemctl restart kestrel-golden-ticket &&
     
-    echo timestamp+"Redeploy Finished"
+	date +"[%Y %b %d %T] Redeploy Finished"
 fi
 
