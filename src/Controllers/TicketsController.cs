@@ -135,6 +135,21 @@ namespace GoldenTicket.Controllers
         }
 
         /// <summary>
+        /// Deletes a time
+        /// </summary>
+        /// <param name="id">The id of the time</param>
+        /// <returns>The ticket view</returns>
+        [Authorize(Roles = DataConstants.AdministratorRole)]
+        [HttpPost]
+        public async Task<IActionResult> DeleteTime([FromRoute] Guid id)
+        {
+            var time = await _context.TechnicianTicketTimes.FindAsync(id);
+            _context.TechnicianTicketTimes.Remove(time);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Open), new { id = time.TicketId });
+        }
+
+        /// <summary>
         /// Gets bill.
         /// </summary>
         /// <param name="id">The id for the ticket</param>

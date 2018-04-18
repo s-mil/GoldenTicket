@@ -2,6 +2,7 @@
     ViewData["Title"] = Model.Ticket.Title;
 }
 @using GoldenTicket.Models.TicketsViewModels
+@using GoldenTicket.Data
 @using System.Linq
 @model TicketDetails
 
@@ -44,6 +45,13 @@
         <th>@time.Time.Start</th>
         <th>@time.Time.End</th>
         <th>@((time.Time.End - time.Time.Start).ToString("h\\:mm"))</th>
+        @if (User.IsInRole(DataConstants.AdministratorRole)) {
+        <th>
+            <form asp-action="DeleteTime" asp-route-id="@time.Time.Id" method="post">
+                <input type="submit" value="Delete">
+            </form>
+        </th>
+        }
     </tr>
     }
 </table>
