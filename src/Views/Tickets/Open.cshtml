@@ -1,0 +1,69 @@
+@{
+    ViewData["Title"] = Model.Ticket.Title;
+}
+@using GoldenTicket.Models.TicketsViewModels
+@using GoldenTicket.Data
+@using System.Linq
+@model TicketDetails
+
+@if (Model.Ticket.IsUrgent) {
+    <h3 class="center red">URGENT</h3>
+}
+
+<h3>Ticket Details</h3>
+<p>
+    Complexity: @Model.Ticket.Complexity <br>
+    Date Added: @Model.Ticket.DateAdded <br>
+    Status: @(Model.Ticket.Open ? "Open" : "Closed") <br>
+    Description: @Model.Ticket.Description <br>
+    Notes: @Model.Ticket.Notes <br>
+    <a asp-action="Edit" asp-route-id="@Model.Ticket.Id">Edit</a>
+</p>
+
+@if (User.IsInRole(DataConstants.AdministratorRole)) {
+<form asp-action="ToggleUrgent" asp-route-id="@Model.Ticket.Id" method="post">
+    <input type="submit" value="Toggle Urgent">
+</form>
+}
+
+<h3>Client Details</h3>
+<p>
+    Name: @Model.Client.FirstName @Model.Client.LastName <br>
+    Company: @Model.Client.Company <br>
+    Phone: @Model.Client.PhoneNumber <br>
+    Email: @Model.Client.EmailAddress <br>
+    <a asp-action="Open" asp-controller="Clients" asp-route-id="@Model.Client.Id">More Information</a>
+</p>
+
+<a asp-action="Bill" asp-route-id="@Model.Ticket.Id">Generate Bill</a>
+
+<h3>Technician Time: @(TimeSpan.FromHours(Model.Times.Sum(time => (time.Time.End - time.Time.Start).TotalHours)).ToString("h\\:mm"))</h3>
+@if (Model.Ticket.Open) {
+<a asp-action="AddTime" asp-route-id="@Model.Ticket.Id">Add Time</a>
+}
+<table>
+    <tr>
+        <th>Technician</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Time</th>
+        @if (User.IsInRole(DataConstants.AdministratorRole)) {
+        <th></th>
+        }
+    </tr>
+    @foreach (var time in Model.Times) {
+    <tr>
+        <th>@time.Technician.FirstName @time.Technician.LastName</th>
+        <th>@time.Time.Start</th>
+        <th>@time.Time.End</th>
+        <th>@((time.Time.End - time.Time.Start).ToString("h\\:mm"))</th>
+        @if (User.IsInRole(DataConstants.AdministratorRole)) {
+        <th>
+            <form asp-action="DeleteTime" asp-route-id="@time.Time.Id" method="post">
+                <input type="submit" value="Delete">
+            </form>
+        </th>
+        }
+    </tr>
+    }
+</table>

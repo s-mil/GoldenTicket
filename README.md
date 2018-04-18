@@ -4,12 +4,11 @@
 
 Wow, what a great ticketing system!
 
-The Golden Ticket system consists of two services:
+The Golden Ticket system consists of one ASP.Net Core MVC App:
 
-- GoldenTicket.WebApi
-- GoldenTicket.Website
+- GoldenTicket
 
-You can build and run both of the services in the same way from within their respective folders.
+You can build and run the app from the "src" folder.
 
 ## Build And Run
 
@@ -22,7 +21,7 @@ If using Visual Studio Code, the built in debugger will take care of building an
 ### Using The CLI
 
 1. `dotnet build`
-1. `dotnet GoldenTicket.Web[site|Api]/bin/Debug/netcoreapp2.0/GoldenTicket.[site|Api].dll`
+1. `dotnet GoldenTicket/bin/Debug/netcoreapp2.0/GoldenTicket.[site|Api].dll`
 
 ### Using Visual Studio Code
 

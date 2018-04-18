@@ -1,0 +1,20 @@
+@using GoldenTicket.Models.AccountViewModels 
+@model LoginRequest
+@{ 
+	ViewData["Title"] = "Login";
+}
+
+<form method="post">
+		<input asp-for="Username" placeholder="Username">
+	
+		<input asp-for="Password" placeholder="Password">
+		<p>
+			<label>
+				<input  asp-for="RememberMe" type="checkbox" />
+				<span>Remember Me?</span>
+			</label>
+		</p>
+		<button class="btn" type="submit">
+			Login
+		</button>
+</form>

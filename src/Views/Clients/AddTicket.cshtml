@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Add a Ticket";
+}
+@using GoldenTicket.Models
+@model Ticket
+
+<form method="post">
+    <input asp-for="ClientId" type="hidden">
+    <label>Title</label>
+    <input asp-for="Title">
+    <label>Description</label>
+    <input asp-for="Description">
+    <label>Complexity</label>
+    <input asp-for="Complexity">
+    <label>Notes</label>
+    <input asp-for="Notes">
+    <input class="btn" type="submit" value="Save">
+</form>

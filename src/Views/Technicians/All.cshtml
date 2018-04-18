@@ -1,0 +1,30 @@
+@{
+    ViewData["Title"] = "All Clients";
+}
+@using GoldenTicket.Models
+@using System.Collections.Generic
+@model List<Technician>
+
+<a asp-action="Add" >Add Technician</a>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Experience (years)</th>
+        <th>Rate</th>
+        <th>Admin</th>
+    </tr>
+    @foreach (var technician in Model) {
+    <tr>
+        <th>@technician.FirstName @technician.LastName</th>
+        <th>@((int)((DateTime.Now - technician.DateAdded).TotalDays / 365))</th>
+        <th>$@technician.GetPayRate()</th>
+        @if (technician.IsAdmin) {
+        <th>&#10004;</th>
+        }
+        else {
+        <th></th>
+        }
+    </tr>
+    }
+</table>

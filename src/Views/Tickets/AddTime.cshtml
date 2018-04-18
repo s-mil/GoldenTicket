@@ -1,0 +1,14 @@
+@{
+    ViewData["Title"] = "Adding Time For " + Model.TicketTitle;
+}
+@using GoldenTicket.Models.TicketsViewModels
+@model TicketTime
+
+<form method="post">
+        <input asp-for="TicketId" type="hidden">
+		<input asp-for="Start">
+		<input asp-for="End">
+		<button class="btn" type="submit">
+			Add Time
+		</button>
+</form>
