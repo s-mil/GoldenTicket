@@ -47,7 +47,14 @@ namespace GoldenTicket.Controllers
         public async Task<IActionResult> Open([FromRoute] Guid id)
         {
             var client = await _context.Clients.FindAsync(id);
-            return View(client);
+            var tickets = await _context.Tickets.Where(ticket => ticket.ClientId == id).ToListAsync();
+
+            var details = new ClientDetails {
+                Client = client,
+                OpenTicketCount = tickets.Count,
+                Tickets = tickets
+            };
+            return View(details);
         }
 
         /// <summary>

@@ -26,6 +26,7 @@
     Company: @Model.Client.Company <br>
     Phone: @Model.Client.PhoneNumber <br>
     Email: @Model.Client.EmailAddress <br>
+    <a asp-action="Open" asp-controller="Clients" asp-route-id="@Model.Client.Id">More Information</a>
 </p>
 
 <a asp-action="Bill" asp-route-id="@Model.Ticket.Id">Generate Bill</a>
