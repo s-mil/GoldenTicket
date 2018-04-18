@@ -58,7 +58,8 @@ namespace GoldenTicket
                         UserName = DataConstants.RootUsername,
                         FirstName = DataConstants.RootUsername,
                         LastName = DataConstants.RootUsername,
-                        DateAdded = DateTime.Now.AddYears(-2)
+                        DateAdded = DateTime.Now.AddYears(-2),
+                        IsAdmin = true
                     };
                     userManager.CreateAsync(admin, configuration["adminPassword"]).Wait();
                 }
