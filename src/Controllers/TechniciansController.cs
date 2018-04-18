@@ -2,6 +2,9 @@ using System;
 using System.Threading.Tasks;
 using GoldenTicket.Data;
 using GoldenTicket.Models;
+using GoldenTicket.Models.TechniciansViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,40 +13,62 @@ namespace GoldenTicket.Controllers
     /// <summary>
     /// Controller for technicians
     /// </summary>
-    [Route("[controller]")]
+    [Authorize(Roles = DataConstants.AdministratorRole)]
     public class TechniciansController : Controller
     {
         private GoldenTicketContext _context;
+
+        private UserManager<Technician> _userManager;
 
         /// <summary>
         /// intializes _context
         /// </summary>
         /// <param name="context">context of the technician</param>
-        public TechniciansController(GoldenTicketContext context)
+        public TechniciansController(GoldenTicketContext context, UserManager<Technician> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         /// <summary>
-        /// Adds tech to index
+        /// Gets all technicians
         /// </summary>
-        /// <returns>Http OK response</returns>
+        /// <returns>A list of all technicians</returns>
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> All()
         {
-            return Ok(await _context.Set<Technician>().ToListAsync());
+            var technicians = await _context.Users.ToListAsync();
+            return View(technicians);
         }
 
         /// <summary>
-        /// Gets the tech from id
+        /// Gets the view for adding a technician
         /// </summary>
-        /// <param name="id">Unique id for technician</param>
-        /// <returns>404 error or Http response for success</returns>
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get([FromRoute] string id)
+        /// <returns>The add technician view</returns>
+        [HttpGet]
+        public IActionResult Add()
         {
-            var technician = await _context.Set<Technician>().FindAsync(id);
-            return technician == null ? NotFound(new Technician { Id = id }) : Ok(technician) as IActionResult;
+            return View();
+        }
+
+        /// <summary>
+        /// Adds a technician
+        /// </summary>
+        /// <returns>The technician list</returns>
+        [HttpPost]
+        public async Task<IActionResult> Add([FromForm] NewTechnician newTechnician)
+        {
+            var technician = new Technician
+            {
+                DateAdded = DateTime.Now,
+                UserName = $"{newTechnician.FirstName}.{newTechnician.LastName}",
+                FirstName = newTechnician.FirstName,
+                LastName = newTechnician.LastName,
+                IsAdmin = newTechnician.IsAdmin
+            };
+            await _userManager.CreateAsync(technician, newTechnician.Password);
+            await _userManager.AddToRoleAsync(technician, DataConstants.AdministratorRole);
+            return RedirectToAction(nameof(All));
         }
     }
 }

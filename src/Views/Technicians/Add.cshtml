@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Add a Technician";
+}
+@using GoldenTicket.Models.TechniciansViewModels
+@model NewTechnician
+
+<form method="post">
+    <label>First Name</label>
+    <input asp-for="FirstName">
+    <label>Last Name</label>
+    <input asp-for="LastName">
+    <label>Password</label>
+    <input asp-for="Password">
+    <p>
+        <label>
+            <input  asp-for="IsAdmin"/>
+            <span>Administrator?</span>
+        </label>
+    </p>
+    <button class="btn" type="submit">
+        Add Technician
+    </button>
+</form>
