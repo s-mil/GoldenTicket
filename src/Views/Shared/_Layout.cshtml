@@ -22,20 +22,20 @@
         <div class="nav-wrapper purple darken-4 container">
             <a class="brand-logo hide-on-med-and-down"><strong class="amber-text text-darken-2"> The Golden Ticket</strong> </a>
             <ul class="right amber-text text-darken-2">
-            @if (SignInManager.IsSignedIn(User)) {
+                @if (SignInManager.IsSignedIn(User)) {
                 <li class="nav-item amber-text text-darken-2" >
                     Hello @UserManager.GetUserName(User)!
                 </li>
                 <li class="nav-item amber-text text-darken-2">
                     <a asp-controller="Account" asp-action="Logout">Log out</a>
                 </li>
-            } 
-            else 
-            {
+                } 
+                else 
+                {
                 <li class="nav-item amber-text text-darken-2">
                     <a asp-controller="Account" asp-action="Login">Log in</a>
                 </li>
-            }
+                }
                 <li>
                     <a asp-controller="Tickets" asp-action="All">Tickets</a>
                 </li>
@@ -46,12 +46,15 @@
                 <li>
                     <a asp-controller="Technicians" asp-action="All">Technicians</a>
                 </li>
+                <li>
+                    <a asp-controller="Reports" asp-action="All">Reports</a>
+                </li>
                 }
             </ul>
         </div>
     </nav>
     <main class="container">
-        <h1>@ViewData["Title"]</h1>
+        <h1 id="Title">@ViewData["Title"]</h1>
         @RenderBody()
     </main>
 

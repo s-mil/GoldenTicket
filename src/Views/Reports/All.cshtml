@@ -1,0 +1,48 @@
+@{
+    ViewData["Title"] = "Daily Activity";
+}
+@using GoldenTicket.Models.ReportsViewModels
+@using System.Collections.Generic
+@model ReportDetails
+
+<p id="TimeSpanToggle" class="waves-effect waves-light btn-small">Monthly Activity</p>
+
+<p>
+    Average Wait Time: @Model.AverageWait <br>
+    Average Queue Length: @Model.AverageQueueLength <br>
+    Empty Queue Percentage: @Model.EmptyQueuePercentage <br>
+    Tickets Not Addressed Same Day: @Model.TicketsNotAddressedSameDay
+</p>
+
+<h3>Technician Idle Hours</h3>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Idle Hours</th>
+    </tr>
+    @foreach (var technician in Model.TechnicianIdleHours) {
+    <tr>
+        <th>@technician.Technician.FirstName @technician.Technician.LastName</th>
+        <th>@technician.HoursIdle</th>
+    </tr>
+    }
+</table>
+
+@section Scripts {
+    <script>
+        document.getElementById("TimeSpanToggle").addEventListener("click", (e) => {
+            if (document.title === "Daily Activity") {
+                document.title = "Monthly Activity";
+                document.getElementById("Title").innerHTML = "Monthly Activity";
+                document.getElementById("TimeSpanToggle").innerHTML = "Daily Activity";
+            }
+            else
+            {
+                document.title = "Daily Activity"
+                document.getElementById("Title").innerHTML = "Daily Activity";
+                document.getElementById("TimeSpanToggle").innerHTML = "Monthly Activity";
+            }
+        });
+    </script>
+}
