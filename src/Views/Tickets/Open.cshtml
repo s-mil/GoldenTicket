@@ -22,7 +22,7 @@
 
 @if (User.IsInRole(DataConstants.AdministratorRole)) {
 <form asp-action="ToggleUrgent" asp-route-id="@Model.Ticket.Id" method="post">
-    <input type="submit" value="Toggle Urgent">
+    <input class="waves-effect waves-light btn" type="submit" value="Toggle Urgent">
 </form>
 }
 
