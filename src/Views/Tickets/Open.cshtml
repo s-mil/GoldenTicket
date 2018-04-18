@@ -38,7 +38,9 @@
 <a asp-action="Bill" asp-route-id="@Model.Ticket.Id">Generate Bill</a>
 
 <h3>Technician Time: @(TimeSpan.FromHours(Model.Times.Sum(time => (time.Time.End - time.Time.Start).TotalHours)).ToString("h\\:mm"))</h3>
+@if (Model.Ticket.Open) {
 <a asp-action="AddTime" asp-route-id="@Model.Ticket.Id">Add Time</a>
+}
 <table>
     <tr>
         <th>Technician</th>
