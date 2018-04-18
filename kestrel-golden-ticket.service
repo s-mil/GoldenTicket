@@ -3,7 +3,7 @@ Description=.NET Web API App running on POP! OS
 
 [Service]
 WorkingDirectory=/var/aspnetcore/GoldenTicket
-ExecStart=/usr/share/dotnet/dotnet /usr/local/gold/GoldenTicket.dll
+ExecStart=/usr/bin/dotnet GoldenTicket.dll
 Restart=always
 # Restart service after 10 seconds if dotnet service crashes
 RestartSec=10
