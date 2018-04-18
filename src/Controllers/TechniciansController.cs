@@ -68,7 +68,10 @@ namespace GoldenTicket.Controllers
                 IsAdmin = newTechnician.IsAdmin
             };
             await _userManager.CreateAsync(technician, newTechnician.Password);
-            await _userManager.AddToRoleAsync(technician, DataConstants.AdministratorRole);
+            if (technician.IsAdmin)
+            {
+                await _userManager.AddToRoleAsync(technician, DataConstants.AdministratorRole);
+            }
             return RedirectToAction(nameof(All));
         }
     }
