@@ -1,6 +1,7 @@
 #!/bin/bash
 # Pull the repo and act on the boolean value created by grep
- if git pull | grep -Fxq 'Already up-to-date.'
+git -C /home/gold/GoldenTicket fetch
+if git -C /home/gold/GoldenTicket pull | grep -Fxq 'Already up-to-date.'
   then
       echo "Already up-to-date."
   else
