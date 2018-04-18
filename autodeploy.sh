@@ -4,9 +4,9 @@
   then
       echo "Already up to date"
   else
-    dotnet publish
+    dotnet publish /home/gold/GoldenTicket/src
 
-    sudo cp -rf /home/gold/GoldenTicketi/src/bin/Debug/netcoreapp2.0/publish/* /var/aspnetcore/GoldenTicket/
+    sudo cp -rf /home/gold/GoldenTicket/src/bin/Debug/netcoreapp2.0/publish/* /var/aspnetcore/GoldenTicket/
 
     sudo systemctl restart kestrel-golden-ticket
 fi
