@@ -25,6 +25,7 @@
              <p>@ticket.DateAdded.ToString("d")</p><br>
             </div>
           </div>
+          </div>
         <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">@ticket.Title<i class="material-icons right">close</i></span>
         <p>@ticket.Notes</p>
@@ -32,7 +33,6 @@
         <div class="card-action">
           <a asp-action="Open" asp-route-id="@ticket.Id">Open</a>
         </div>
-      </div>
     </div>
     </div>
 
