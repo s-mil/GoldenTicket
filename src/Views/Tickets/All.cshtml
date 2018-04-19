@@ -14,8 +14,7 @@
    
  <div class="row">
     <div class="col s12 m6">
-      <div class="activator">
-      <div class="card stickey-action grey darken-1 hoverable">
+      <div class="card stickey-action grey darken-1 hoverable activato">
         
             <div class="card-content white-text">
              <span class="card-title">@ticket.Title</span>
@@ -24,7 +23,6 @@
              <p>This ticket is  @(ticket.Open ? "open." : "closed")</p><br>
              <p>@ticket.DateAdded.ToString("d")</p><br>
             </div>
-          </div>
           </div>
         <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">@ticket.Title<i class="material-icons right">close</i></span>
