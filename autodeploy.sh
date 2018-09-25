@@ -13,7 +13,7 @@ if git -C /home/gold/GoldenTicket pull | grep -Fxq 'Already up-to-date.'
     sudo cp -rf /home/gold/GoldenTicket/src/bin/Debug/netcoreapp2.0/publish/* /var/aspnetcore/GoldenTicket/ &&
     # restart service
     sudo systemctl restart kestrel-golden-ticket &&
-    
+   # Logging
 	date +"[%Y %b %d %T] Redeploy Finished"
 fi
 
