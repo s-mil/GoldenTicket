@@ -1,37 +1,41 @@
-## Welcome to GitHub Pages
+# Golden Ticket
 
-You can use the [editor on GitHub](https://github.com/sithpow/GoldenTicket/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
+## About
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Wow, what a great ticketing system!
 
-### Markdown
+The Golden Ticket system consists of one ASP.Net Core MVC App:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- GoldenTicket
 
-```markdown
-Syntax highlighted code block
+You can build and run the app from the "src" folder.
 
-# Header 1
-## Header 2
-### Header 3
+## Build And Run
 
-- Bulleted
-- List
+If using Visual Studio Code, the built in debugger will take care of building and running for you.
 
-1. Numbered
-2. List
+### Required Tools
 
-**Bold** and _Italic_ and `Code` text
+- [.NET Core SDK](https://www.microsoft.com/net/download/thank-you/dotnet-sdk-2.1.4-windows-x64-installer)
 
-[Link](url) and ![Image](src)
-```
+### Using The CLI
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+1. `dotnet build`
+1. `dotnet GoldenTicket/bin/Debug/netcoreapp2.0/GoldenTicket.[site|Api].dll`
 
-### Jekyll Themes
+### Using Visual Studio Code
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sithpow/GoldenTicket/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+1. Open debugging pane
+1. Select project from launch drop down
+1. Hit `f5` or click the play button
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### Hosting the application
+
+1. dotnet publish within the src directory
+1. the autodeploy script can handle this for your you can also set it to run as a cron job so that the process is automatic
+1. the service file will allow you to have the applicaiton run as a service on your linux os of choice, just copy it to /etc/systemd/system/ and enable with (sudo) systemctl enable kestrel-golden-ticket.service
+
+the application by default listens on port 5000, apache or nginx can be used as a reverse proxy in order to have the application on port 80 and 443.
+
+I would sugest using certbot(uses LetsEncrypt) in order to give your webaddress an SSL cert in order to enable https
