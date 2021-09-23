@@ -16,7 +16,7 @@ If using Visual Studio Code, the built in debugger will take care of building an
 
 ### Required Tools
 
-- [.NET Core SDK](https://www.microsoft.com/net/download/thank-you/dotnet-sdk-2.1.4-windows-x64-installer)
+- [.NET Core SDK](https://dotnet.microsoft.com/download)
 
 ### Using The CLI
 
